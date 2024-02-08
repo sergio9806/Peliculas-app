@@ -1,0 +1,148 @@
+.Container__inicio{
+    display: flex;
+    background: hsla(250, 6%, 20%, 1);
+}
+.menu__generos{
+    
+    width: 14rem;
+    height: calc(100vh - 52px);
+    border-right: 1px solid gray;
+}
+.titulo{
+    text-align: center;
+    color: aliceblue;
+    display: flex;
+}
+.generos{
+    
+    list-style: none;
+  padding: 1rem 2rem;
+}
+.lista__generos{
+    margin-bottom: 1rem;
+    background: hsla(220, 17%, 7%, 1);
+    padding: 30px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.nombre__genero{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 25px;
+    padding-top: 2.4rem;
+}
+/*Seccion banner*/
+
+.banner__inicio{
+    width: 90%;
+    min-height: 600px;
+    background-size: cover;
+    margin-left:5%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 20%;
+    box-shadow: 10px 0 15px rgba(0, 0, 0, 50);
+    padding-left: 4%;
+    border-radius: 5%; 
+}
+
+
+
+.Boton__verAhora{
+    background-color: rgb(245, 10, 10);
+    color: #fff;
+    border-radius: 6%; 
+    border: none;
+    margin-bottom: 25px;
+    width: 15%;
+    height: 25%;
+    font-weight: bold;
+    
+    
+}
+/*seccion carousel peliculas*/
+.container__peliculas2{
+    padding-top: 70px;
+    margin-bottom: 70px;
+    width: 95%;
+    align-items: center;
+    padding-left: 2.5%;
+}
+.peliculas__seccion2{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+.peliculas__recomendadas2{
+    font-size: 30px;
+   color: #fff;
+}
+.peliculas__seccion2 .indicadores_peliculas2 button{
+    background-color: #fff;
+    height: 3px;
+    width: 10px;
+    cursor: pointer;
+    border: none;
+    margin-right: 4px;
+}
+.peliculas__seccion2 .indicadores_peliculas2 button:hover,
+.peliculas__seccion2 .indicadores_peliculas2 button.activo{
+  background-color: red;
+}
+
+/*consiguracion  flechas*/
+.container__peliculas2 .container__principal2{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.container__peliculas2 .container__principal2 .flecha__izquierda2,
+.container__peliculas2 .container__principal2 .flecha__derecha2{
+ position: absolute;
+ border: none;
+ background: rgba(0,0,0,0.3);
+ font-size: 40px;
+ height: 50%;
+ top: calc(50%-25%);
+ line-height: 40px;
+ width: 50px;
+ color: #fff;
+ cursor: pointer;
+ z-index: 500;
+ transition: .2s ease all;
+}
+.container__peliculas2 .container__principal .flecha__izquierda2:hover,
+.container__peliculas2 .container__principal .flecha__derecha2:hover{
+background: rgba(0,0,0.9);
+}
+.container__peliculas2 .container__principal2 .flecha__izquierda2{
+    left: 0;
+}
+.container__peliculas2 .container__principal2 .flecha__derecha2{
+    right: 0;
+}
+
+/*contenedor carousel*/
+.container__peliculas2 .container__carousel2{
+    width: 100%;
+    padding: 20px 0 ;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+.container__peliculas2 .container__carousel2 .carousel2{
+    display: flex;
+    flex-wrap:nowrap ;
+
+}
+.container__peliculas2 .container__carousel2 .carousel2 .Opciones__peliculas2{
+    min-width: 20%;
+    transition: 3s ease all;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+}
+.container__peliculas2 .container__carousel2 .carousel2 .Opciones__peliculas2 img{
+    width: 100%;
+    vertical-align: top ;
+}

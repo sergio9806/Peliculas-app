@@ -16,7 +16,9 @@
 .container__peliculas{
     padding-top: 100px;
     margin-bottom: 70px;
-    
+    width: 95%;
+    align-items: center;
+    padding-left: 2.5%;
 }
 
 .peliculas__seccion{
@@ -28,7 +30,7 @@
     font-size: 30px;
    color: #fff;
 }
-.peliculas__seccion .indicadores_peliculas button{
+.peliculas__seccion .indicadores__peliculas button{
     background-color: #fff;
     height: 3px;
     width: 10px;
@@ -36,8 +38,8 @@
     border: none;
     margin-right: 4px;
 }
-.peliculas__seccion .indicadores_peliculas button:hover,
-.peliculas__seccion .indicadores_peliculas button.activo{
+.peliculas__seccion .indicadores__peliculas button:hover,
+.peliculas__seccion .indicadores__peliculas button.activo{
   background-color: red;
 }
 
@@ -91,7 +93,27 @@ background: rgba(0,0,0.9);
     transition: 3s ease all;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
 }
+.container__peliculas .container__carousel .carousel .Opciones__peliculas.hover {
+    transform: scale(1.2);
+    transform-origin: center;
+}
 .container__peliculas .container__carousel .carousel .Opciones__peliculas img{
     width: 100%;
     vertical-align: top ;
+}
+/*Media queries*/
+@media screen and (max-width: 800) {
+    .peliculas__recomendadas .container__carousel{
+        overflow: visible;
+    }
+    .peliculas__recomendadas .container__carousel .carousel{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    .peliculas__recomendadas .indicadores__peliculas,
+    .peliculas__recomendadas .flecha__izquierda,
+    .peliculas__recomendadas .flecha__derecha{
+        display: none;
+    }
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import YouTube from 'react-youtube';
+import { Link, useNavigate} from "react-router-dom";
+import "./css/Inicio.css"
 
 
 
@@ -10,15 +11,32 @@ const API_KEY = 'c3aec649e96085c3cf46900cb64a4aee'
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
 const URL_IMAGE = 'https://image.tmdb.org/t/p/original'
 
+const navigate = useNavigate();
+  const navegar = ()=> {
+    
+    navigate("/Login");
+  }
 //variables de estado 
 
 const [movies, setMovies] = useState([])
 const [searchKey, setSearchKey] = useState("")
 const [movie, setMovie] = useState({title: "loading page"})
-// const [playing, setPlaying] = useState(false)
 const [trailer, setTrailer] = useState(null)
-//const [selectedMovie, setSelectedMovie] = useState({})
+const filas = document.querySelector('.container__carousel2');
+const flechaIzquierda2 = document.getElementById('flecha__izquierda2');
+const flechaDerecha2 = document.getElementById('flecha__derecha2');
+//evento listener para flecha derecha
+if (flechaDerecha2 !== null) {
+  flechaDerecha2.addEventListener('click', () =>{
+    filas.scrollLeft += filas.offsetWidth;
+  } );
+}
 
+if (flechaIzquierda2 !== null) {
+  flechaIzquierda2.addEventListener('click', () =>{
+    filas.scrollLeft -= filas.offsetWidth;
+  } );
+}
 // funcion para realizar la peticion get a la api
 const fetchMovies = async (searchKey) => {
   const type = searchKey ? "search" : "discover";
@@ -30,8 +48,7 @@ const fetchMovies = async (searchKey) => {
       query: searchKey,
     },
   });
-  //console.log('data',results);
-  //setSelectedMovie(results[0])
+  
 
   setMovies(results);
   setMovie(results[0]);
@@ -60,32 +77,54 @@ const fetchMovie = async (id) => {
   setMovie(data);
 };
 
-
-  
 const selectMovie = async (movie) => {
-  // const data = await fetchMovie(movie.id)
-  // console.log(data);
-  // setSelectedMovie(movie)
   fetchMovie(movie.id);
-
   setMovie(movie);
   window.scrollTo(0, 0);
 };
-
 // funcion para buscar peliculas
-const searchMovies = (e) => {
+  const searchMovies = (e) => {
   e.preventDefault();
   fetchMovies(searchKey);
 };
+
 
 useEffect(() => {
   fetchMovies();
 }, []);
 
   return (
-    
+  <div className="Container__inicio">
+   
+        <ul className="lista__generos">
+           <li className="generos">
+           <Link className="nombre__genero"> Generos </Link>  
+           </li>
+          <li className="generos">
+              <Link className="nombre__genero"> Drama </Link>   
+          </li>
+          <li className="generos">
+              <Link className="nombre__genero"> Suspenso </Link>   
+          </li>
+          <li className="generos">
+              <Link className="nombre__genero"> Comedia </Link>   
+          </li>
+          <li className="generos">
+              <Link className="nombre__genero"> Aventura </Link>   
+          </li>
+          <li className="generos">
+              <Link className="nombre__genero"> Accion </Link>   
+          </li>
+          <li className="generos">
+              <Link className="nombre__genero"> Terror </Link>   
+          </li>
+          <li className="generos">
+              <Link className="nombre__genero"> Romance </Link>   
+          </li>
+
+        </ul>
     <div>
-      {/*<h2 className='text-center mt-5 mb-5'> Trailers movies</h2>*/}
+      
       {/* buscador */}
        
       <form className="buscador" onSubmit={searchMovies}>
@@ -93,42 +132,59 @@ useEffect(() => {
         <button className='btn btn-primary'>Buscar</button>
       </form>
        {/* contenedor del banner y reproductor de video  */}
-       <div>
+       <div className="banner__sombra">
         <main>
           {movie ? (
+            
             <div
-              className="banner"
+              className="banner__inicio"
               style={{
                 backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
+                
               }}
-              >    
+              >   
+              
                 <div className="container">
                   <div className="">
                     
                     <h1 className="text-white">{movie.title}</h1>
                     <p className="text-white">{movie.overview}</p>
-                  </div>
+                  </div> 
+                  
+                     <button className="Boton__verAhora" role='button' onClick={navegar}> Ver ahora </button>
+                                  
                 </div>
-              
+                
             </div>
           ) : null}
         </main>
       </div>
 
       {/* contenedor de poster de peliculas */}
-      <div className='container mt-3'>
-        <div className="row">
-           {movies.map((movie)=> (
-            <div key={movie.id} className='col-md-4 mb-3' onClick={()=>selectMovie(movie)}>
-               <img src={`${URL_IMAGE + movie.poster_path}`} alt="" height={600} width="100%" />
-               <h4 className='text-center'>{movie.title}</h4>
-            </div>
-           ))}
+      <div className='container__peliculas2'>
+        <div className="peliculas__seccion2">
+          <h3 className="peliculas__recomendadas2">Peliculas recomendadas</h3>
+          <div className="indicadores_peliculas2">
+            
+          </div>
         </div>
-      </div>
+        <div className="container__principal2">
+          <button role='button' id='flecha__izquierda2' className="flecha__izquierda2"> {'<'}</button>
+           <div className="container__carousel2">
+             <div className="carousel2">
+                 {movies.map((movie) => (
+                   <div key={movie.id} className="Opciones__peliculas2" onClick={() => selectMovie(movie)}>
+                       <img src={`${URL_IMAGE + movie.poster_path}`} alt=""  />
+                  </div>
+             ))}
+             </div>
+             </div>
+          <button role='button' id='flecha__derecha2' className="flecha__derecha2">{'>'}</button>
+        </div>
     </div>
-    
+    </div>
+    </div>
   )
 }
 
-export default Inicio
+export default Inicio 
