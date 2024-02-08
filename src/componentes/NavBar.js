@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import firebaseapp from "../credenciales";
 import {getAuth,signOut} from "firebase/auth";
-import {getFirestore} from "firebase/firestore";
+
 
 
 
 const auth = getAuth(firebaseapp)
 
 
-const db = getFirestore(firebaseapp)
+
 export const NavBar = ({correoUsuario}) => {
   const navigate = useNavigate();
   const navegar = ()=> {

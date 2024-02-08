@@ -13,11 +13,41 @@ const Detalle = () => {
 
   //variables de estado 
   const navigate = useNavigate();
-  const [movies, setMovies] = useState([])
-  const [searchKey, setSearchKey] = useState("")
-  const [movie, setMovie] = useState({ title: "loading page" })
-  const [playing, setPlaying] = useState(false)
-  const [trailer, setTrailer] = useState(null)
+  const [movies, setMovies] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
+  const [movie, setMovie] = useState({ title: "loading page" });
+  const [playing, setPlaying] = useState(false);
+  const [trailer, setTrailer] = useState(null);
+//constantes para el carousel 
+const filas = document.querySelector('.container__carousel');
+const peliculas = document.querySelectorAll('.carousel');
+const flechaIzquierda = document.getElementById('flecha__izquierda');
+const flechaDerecha = document.getElementById('flecha__derecha');
+//evento listener para flecha derecha
+if (flechaDerecha !== null) {
+  flechaDerecha.addEventListener('click', () =>{
+    filas.scrollLeft += filas.offsetWidth;
+  } );
+}
+
+if (flechaIzquierda !== null) {
+  flechaIzquierda.addEventListener('click', () =>{
+    filas.scrollLeft -= filas.offsetWidth;
+  } );
+}
+//funcion para los indicadores 
+const numeroPaginas = Math.ceil(peliculas.length / 5);
+ for (let i = 0; i < numeroPaginas; i++) {
+ const indicador = document.createElement('button');
+if (i===0 ) {
+  indicador.classList.add('activo');
+}
+ document.querySelector('.indicadores__peliculas').appendChild(indicador);
+ indicador.addEventListener('click', (e)=> {
+  filas.scrollLeft = i * filas.offsetWidth;
+ })
+
+ }
 
 
   //const [selectedMovie, setSelectedMovie] = useState({})
@@ -164,13 +194,13 @@ const Detalle = () => {
       {/* contenedor de poster de peliculas */}
       <div className='container__peliculas'>
         <div className="peliculas__seccion">
-          <h3 className="peliculas__recomendadas">Peliculas recomendadas</h3>
-          <div className="indicadores_peliculas">
+          <h3 className="peliculas__recomendadas">Películas que podrían interesarte</h3>
+          <div className="indicadores__peliculas">
             
           </div>
         </div>
         <div className="container__principal">
-          <button role='button' id='flecha__izquierda' className="flecha__izquierda"> {'>'}</button>
+          <button role='button' id='flecha__izquierda' className="flecha__izquierda"> {'<'}</button>
            <div className="container__carousel">
              <div className="carousel">
                  {movies.map((movie) => (
@@ -180,7 +210,7 @@ const Detalle = () => {
              ))}
              </div>
              </div>
-          <button role='button' id='flecha__derecha' className="flecha__derecha">{'<'}</button>
+          <button role='button' id='flecha__derecha' className="flecha__derecha">{'>'}</button>
         </div>
       </div>
     </div>
