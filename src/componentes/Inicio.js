@@ -6,7 +6,7 @@ import YouTube from 'react-youtube';
 
 const Inicio = () => {
 const API_URL = 'https://api.themoviedb.org/3'
-const API_KEY = '754424d785d8b491bc43ee5e13bb1a55'
+const API_KEY = 'c3aec649e96085c3cf46900cb64a4aee'
 const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
 const URL_IMAGE = 'https://image.tmdb.org/t/p/original'
 
