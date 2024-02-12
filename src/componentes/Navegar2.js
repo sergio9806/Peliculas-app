@@ -1,32 +1,30 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./css/navbar2.css"
-
+import { mostrar_menu} from "./Inicio";
 
 
 
 
 const Navegar2 = () => {
- 
-  return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div className="container-fluid">
-    <div className="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul className="navbar-nav">
-      <li className="nav-item">
-      <Link className="navbar__titulo" to='/'>MovieWorld </Link>
-      </li>
-      <li className="nav-item">
-          <Link className="nav-link" to='/Inicio'>Inicio</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to='/Login'>Login</Link>
-        </li>
-      </ul>
 
+  return (
+    <div className="Navbar2__container">
+      <nav className="navbar2__nav">
+        <ul className="navbar2__ul">
+        <a className="titulo__Pagina2">MovieWorld</a>
+          <li className="item__nav2">
+            <Link className="Nvitem2" to='/Inicio'>Inicio</Link>
+          </li>
+          <li className="item__nav2">
+            <Link className="Nvitem2" to='/Login'>Login</Link>
+          </li>
+          <span></span>
+        </ul> 
+      </nav>
+     
     </div>
-  </div>
-</nav>
+
   )
 
 }

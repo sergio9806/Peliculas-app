@@ -17,7 +17,8 @@ function App() {
    
   const [Usuario, setUsuario] = useState(null)
   
-  
+
+
   
   onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
@@ -45,7 +46,7 @@ function App() {
         </BrowserRouter>
       ) : (
         <BrowserRouter>
-        <Navegar2/>  
+        <Navegar2 />  
           <Routes>    
           <Route path='/' element={<Inicio />}/>
           <Route path='/Inicio' element={<Inicio />}/>

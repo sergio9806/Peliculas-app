@@ -1,6 +1,156 @@
-.navbar__titulo{
-    text-decoration: none;
-    color: aliceblue;
-    font-size: 35px;
-    padding-right: 30px;
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+.Navbar2__container{
+  
+    box-sizing: border-box;
+   font-family:'Poppins',sans-serif;
+   justify-content: space-between;
 }
+.navbar2__nav{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    min-height: 20vh;
+    background-color: #191919;
+    padding-left: 2%;
+}
+.navbar2__ul{
+ display: flex;
+ text-decoration: none;
+ position: relative;
+ border-radius: 8px;
+ background-color: #222;
+ padding-right: 5%;
+ 
+}
+.titulo__Pagina2{
+ 
+  font-size: 4rem;  
+  color: #f4cc70;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 0 23px;
+  text-align: center;
+ padding-right: 9%;
+}
+.navbar2__ul span{
+  position: absolute;
+  top: 0%;
+  left: 55%;
+  width: 55px;
+  height: 100%;
+  background: linear-gradient(60deg, #2e3192, #f4cc70);
+  border-radius: 8px;
+  transition: .5s ease;
+  
+}
+.item__nav2{
+  list-style: none;
+  padding-top: 3%;
+}
+
+.prueba{
+    text-decoration: none;
+    
+}
+
+.Nvitem2{
+   color: aliceblue;
+  font-size: 2.5rem;  
+  text-decoration: none;
+  padding: 0 23px;
+  
+}
+
+nav .item__nav2:nth-child(1):hover~span {
+  top: 90%;
+  left: 55%;
+  width: 100px;
+  height: 100%;
+ 
+}
+nav .item__nav2:nth-child(2):hover~span {
+  top: 90%;
+  left: 63%;
+  width: 115px;
+  height: 8%;
+  
+}
+nav .item__nav2:nth-child(3):hover~span {
+  top: 90%;
+  left: 82%;
+  width: 110px;
+  height: 8%;
+  
+}
+
+/*diseño buscador*/
+.buscador{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 8px auto;  
+  }
+
+  @media(max-width: 764px) {
+    .navbar2__nav {
+      flex-direction: column;
+      align-items: center;
+      padding: 2% 0;
+  }
+  
+  .titulo__Pagina2 {
+      font-size: 3rem;
+  }
+  .navbar2__ul{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    position: relative;
+    border-radius: 8px;
+    background-color: #222;
+    padding: 0 0 30px ;
+    
+   }
+   .navbar2__ul span{
+    position: absolute;
+    left: 7%;
+    width: 85%;
+    top: 33%;
+    height: 4%;
+    background: linear-gradient(60deg, #2e3192, #f4cc70);
+    border-radius: 8px;
+    transition: .5s ease;
+    
+  }
+  
+  nav .item__nav2:nth-child(2):hover~span {
+    left: 38%;
+    width: 23%;
+    top: 58%;
+    height: 4%;
+  }
+  nav .item__nav2:nth-child(3):hover~span {
+    left: 38%;
+    width: 23%;
+    top: 83%;
+    height: 4%;
+  }
+  
+  .Nvitem2 {
+      font-size: 1.5rem;
+      padding: 20px;
+      flex-direction: column;
+  }
+  
+
+
+}
+  
+
+  

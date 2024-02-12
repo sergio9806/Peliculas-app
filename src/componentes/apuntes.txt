@@ -57,3 +57,28 @@
         </main>
       </div>
       import YouTube from 'react-youtube';
+
+
+      <div className="Navbar2__container">
+      <nav className="navbar__nav">
+        <ul className="navbar__ul">
+
+          <li className="item__nav2">
+            <Link className="Nvitem" to='/'>MovieWorld</Link>
+          </li>
+
+
+          <li className="item__nav2">
+            <Link className="Nvitem" to='/Inicio'>Inicio</Link>
+          </li>
+
+
+          <li className="item__nav2">
+            <Link className="Nvitem" to='/Login'>Login</Link>
+          </li>
+          <span></span>
+
+
+        </ul>
+      </nav>
+    </div>

@@ -28,7 +28,7 @@ const Log = () => {
 
     return(
       
-      <div className='row container p-4'>
+      <div className="container__login">
         <div className="col-md-8">
           <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
             <div className="carousel-inner">
