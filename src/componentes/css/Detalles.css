@@ -26,11 +26,11 @@
     justify-content: space-between;
     align-items: end;
 }
-.peliculas__recomendadas{
+.peliculas__seccion h3{
     font-size: 30px;
    color: #fff;
 }
-.peliculas__seccion .indicadores__peliculas button{
+/* .peliculas__seccion .indicadores__peliculas button {
     background-color: #fff;
     height: 3px;
     width: 10px;
@@ -39,9 +39,9 @@
     margin-right: 4px;
 }
 .peliculas__seccion .indicadores__peliculas button:hover,
-.peliculas__seccion .indicadores__peliculas button.activo{
+.peliculas__seccion .indicadores__peliculas button.activo {
   background-color: red;
-}
+} */
 
 /*consiguracion  flechas*/
 .container__peliculas .container__principal{
@@ -102,7 +102,7 @@ background: rgba(0,0,0.9);
     vertical-align: top ;
 }
 /*Media queries*/
-@media screen and (max-width: 800) {
+@media(max-width: 778px)  {
     .peliculas__recomendadas .container__carousel{
         overflow: visible;
     }

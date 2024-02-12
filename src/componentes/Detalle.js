@@ -27,27 +27,50 @@ const flechaDerecha = document.getElementById('flecha__derecha');
 if (flechaDerecha !== null) {
   flechaDerecha.addEventListener('click', () =>{
     filas.scrollLeft += filas.offsetWidth;
+    const indicadorActivo = document.querySelector('.indicadores__peliculas .activo');
+    // //si el indicador activo tiene algo a la derecha 
+    // if (indicadorActivo.nextSibling) {
+    //   indicadorActivo.nextSibling.classList.add('activo');
+    //   indicadorActivo.classList.remove('activo');
+    // }
   } );
 }
 
 if (flechaIzquierda !== null) {
   flechaIzquierda.addEventListener('click', () =>{
     filas.scrollLeft -= filas.offsetWidth;
+    // const indicadorActivo = document.querySelector('.indicadores__peliculas .activo');
+    // //si el indicador activo tiene algo a la derecha 
+    // if (indicadorActivo.previousSibling) {
+    //   indicadorActivo.previousSibling.classList.add('activo');
+    //   indicadorActivo.classList.remove('activo');
+    // }
   } );
 }
 //funcion para los indicadores 
-const numeroPaginas = Math.ceil(peliculas.length / 5);
- for (let i = 0; i < numeroPaginas; i++) {
- const indicador = document.createElement('button');
-if (i===0 ) {
-  indicador.classList.add('activo');
-}
- document.querySelector('.indicadores__peliculas').appendChild(indicador);
- indicador.addEventListener('click', (e)=> {
-  filas.scrollLeft = i * filas.offsetWidth;
- })
-
- }
+// const numeroPaginas = Math.ceil(peliculas.length / 5);
+//  for (let i = 0; i < numeroPaginas; i++) {
+//  const indicador = document.createElement('button');
+// if (i===0 ) {
+//   indicador.classList.add('activo');
+// }
+//  document.querySelector('.indicadores__peliculas').appendChild(indicador);
+//  indicador.addEventListener('click', (e)=> {
+//   filas.scrollLeft = i * filas.offsetWidth;
+//   document.querySelector('.indicadores__peliculas .activo').classList.remove('activo');
+//   e.target.classList.add('activo');
+//  });
+//  }
+ //hover(agrandar la imagen cuando pasas el cursor) de peliculas
+//  peliculas.forEach((movie)=>{
+//    peliculas.addEventListener('mouseenter'), (e)=>{
+//     const elemento  = e.currentTarget;
+//     setTimeout(() => {
+//       peliculas.forEach(movie.classList.remove('hover'))
+//       elemento.classList.add('hover')
+//     },300);
+//    }
+//  }) 
 
 
   //const [selectedMovie, setSelectedMovie] = useState({})
@@ -194,13 +217,11 @@ if (i===0 ) {
       {/* contenedor de poster de peliculas */}
       <div className='container__peliculas'>
         <div className="peliculas__seccion">
-          <h3 className="peliculas__recomendadas">Películas que podrían interesarte</h3>
-          <div className="indicadores__peliculas">
-            
-          </div>
+          <h3>Películas que podrían interesarte</h3>
+          {/* <div className="indicadores__peliculas"></div> */}
         </div>
         <div className="container__principal">
-          <button role='button' id='flecha__izquierda' className="flecha__izquierda"> {'<'}</button>
+          <button  id='flecha__izquierda' className="flecha__izquierda"> {'<'}</button>
            <div className="container__carousel">
              <div className="carousel">
                  {movies.map((movie) => (
@@ -210,7 +231,7 @@ if (i===0 ) {
              ))}
              </div>
              </div>
-          <button role='button' id='flecha__derecha' className="flecha__derecha">{'>'}</button>
+          <button  id='flecha__derecha' className="flecha__derecha">{'>'}</button>
         </div>
       </div>
     </div>
