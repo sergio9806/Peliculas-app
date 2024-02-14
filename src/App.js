@@ -13,10 +13,11 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Route, Routes, BrowserRouter} from "react-router-dom";
 
 const auth = getAuth(firebaseapp)
+
 function App() {
    
   const [Usuario, setUsuario] = useState(null)
-  
+ 
 
 
   

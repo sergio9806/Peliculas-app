@@ -6,10 +6,10 @@ import "./css/Inicio.css"
 
 
 const Inicio = () => {
-const API_URL = 'https://api.themoviedb.org/3'
-const API_KEY = 'c3aec649e96085c3cf46900cb64a4aee'
-const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
-const URL_IMAGE = 'https://image.tmdb.org/t/p/original'
+const API_URL = process.env.REACT_APP_API_URL;
+const API_KEY = process.env.REACT_APP_API_KEY;
+const IMAGE_PATH = process.env.REACT_APP_IMAGE_PATH;
+const URL_IMAGE = process.env.REACT_APP_URL_IMAGE;
 
   const navigate = useNavigate();
   const navegar = () => {
@@ -45,7 +45,7 @@ const URL_IMAGE = 'https://image.tmdb.org/t/p/original'
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=754424d785d8b491bc43ee5e13bb1a55');
+      const response = await axios.get(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
       setCategories(response.data.genres);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -56,7 +56,7 @@ const URL_IMAGE = 'https://image.tmdb.org/t/p/original'
   const handleCategoryClick = async (categoryId) => {
     setCategory(categoryId);
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=754424d785d8b491bc43ee5e13bb1a55&with_genres=${categoryId}`);
+      const response = await axios.get(`${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${categoryId}`);
       setMovies(response.data.results);
     } catch (error) {
       console.error('Error fetching movies:', error);
