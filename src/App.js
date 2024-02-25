@@ -38,11 +38,11 @@ function App() {
         <BrowserRouter>
           <Navegar correoUsuario={Usuario.email} />
           <Routes>
-            <Route path='/' element={<Principal  />} />
-            <Route path='/Principal' element={<Principal  />} />
+            <Route path='/' element={<Principal usuario={Usuario}  />} />
+            <Route path='/Principal' element={<Principal  usuario={Usuario}  />} />
             <Route path='/Home' element={<Home  />} />
             <Route path='/Perfil' element={<Perfil  />} />
-            <Route path='/Detalle' element={<Detalle  />} />
+            <Route path='/Detalle/:movieId' element={<Detalle  />} />
           </Routes>
         </BrowserRouter>
       ) : (

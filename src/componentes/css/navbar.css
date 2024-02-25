@@ -40,7 +40,7 @@
   left: 43%;
   width: 55px;
   height: 100%;
-  background: linear-gradient(60deg, #2e3192, #f4cc70);
+  background: linear-gradient(150deg,  rgb(30, 105, 105), #3aeaf0);
   border-radius: 8px;
   transition: .5s ease;
   
@@ -84,18 +84,37 @@
     top: 80%;
     height: 8%;
   }
-  .Nvitem__boton{
-    background-color: #222;
-    border: 3px solid  #f4cc70;
-    font-size: 2rem;  
-    color: #f4cc70;
-    font-weight: bold;
+  .boton__SignOut{
+    border: 0;
+    background-image: linear-gradient(
+        150deg,
+        rgb(30, 105, 105), #3aeaf0
+        
+    );
     border-radius: 8px;
-    margin-left: 17%;
-    
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    padding: 4px;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: bold;
+    color: #f4cc70;
+    margin-left: 25%;
   }
-  .Nvitem__boton:hover{
-    box-shadow: 0 0 20px #f4cc70;
+  .boton__SignOut span{
+    background-color: #111;
+    padding: 16px 24px;
+    border-radius: 6px;
+    transition: .3s;
+  }
+
+  .boton__SignOut:hover span{
+   background: none;
+   color: #fff;
+  }
+  .boton__SignOut:active{
+   transform: scale(0.9);
   }
   @media(max-width: 848px) {
     .navbar__nav {
