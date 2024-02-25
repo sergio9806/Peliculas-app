@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 // import Tres from '../image/imagen3.png'
 import "./css/Login.css";
 import { useNavigate } from 'react-router-dom';
-import firebaseapp from '../credenciales'
+import firebaseapp from '../credenciales';
 import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
 const auth = getAuth(firebaseapp)
 

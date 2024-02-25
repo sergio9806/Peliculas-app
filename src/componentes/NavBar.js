@@ -45,8 +45,10 @@ export const NavBar = ({correoUsuario}) => {
           <Link className="nav-link" to='/Detalle'></Link>
         </li> */}
          {/* <a className="bienvenido"> Bienvenido, <strong>{correoUsuario}</strong> haz iniciado sesión </a> */}
-      </ul> 
-      <button className='Nvitem__boton' onClick={()=> navegar(signOut(auth))}>Cerrar sesión</button> 
+      </ul>
+      <button className="boton__SignOut">
+      <span  onClick={()=> navegar(signOut(auth))}>Cerrar sesión</span>
+       </button>
 </nav>
 
 </div>

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import "./css/Inicio.css"
-
-
-
-const Inicio = () => {
 const API_URL = process.env.REACT_APP_API_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 const IMAGE_PATH = process.env.REACT_APP_IMAGE_PATH;
 const URL_IMAGE = process.env.REACT_APP_URL_IMAGE;
+
+
+const Inicio = () => {
+
 
   const navigate = useNavigate();
   const navegar = () => {
@@ -205,7 +205,7 @@ const URL_IMAGE = process.env.REACT_APP_URL_IMAGE;
               <div className="carousel2">
                 {movies.map((movie) => (
                   <div key={movie.id} className="Opciones__peliculas2" onClick={() => selectMovie(movie)}>
-                    <img src={`${URL_IMAGE + movie.poster_path}`} alt="" />
+                    <img src={`${URL_IMAGE + movie.poster_path}`} alt="" height={400} />
                   </div>
                 ))}
               </div>
