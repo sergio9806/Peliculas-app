@@ -1,11 +1,12 @@
 /*area general*/
-.Detalle__principal{
-    background-color: black;
+.container__informacion{
+    background-color: #303030;
+    
 }
 
 /*area informacion peliculas*/
 .container__informacion{
-   padding-top: 100px;
+   padding-top: 3%;
 }
 .portada__pelicula{
     width: 20%;
