@@ -378,7 +378,7 @@ const Principal = ({ usuario }) => {
                                   <option>Excelente</option>
                                 </select>
                               </div>
-                              <input name='comentario_personal' className='comentario_personal' placeholder='Añade un comentario' onChange={handleComentarioChange}></input>
+                              <input name='comentario_personal' className='comentario_personal' placeholder='Añade un comentario sobre la pelicula' onChange={handleComentarioChange}></input>
                               <h2>¿Deseas agregar esta película a peliculas vistas?</h2>
                               <button onClick={capturardatosVistas}>Agregar</button>
 
