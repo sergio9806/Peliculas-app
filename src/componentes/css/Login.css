@@ -1,0 +1,79 @@
+.container__login {
+    background-image:url(/src/image/fondo__login.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.formulario__login {
+    
+    position: relative;
+    width: 380px;
+    height: 420px;
+    background-color: hsla(250, 6%, 20%, 1);;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 4%;
+    padding-top: 3%;
+}
+
+.formulario__login::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg,transparent,#f4cc70    ) ;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+.formulario__login::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg,transparent,#f4cc70    ) ;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    
+}
+.formulario{
+    position: absolute;
+    inset: 4px;
+    border-radius: 12px;
+    background-color:hsla(250, 6%, 20%, 1);
+    z-index: 10;
+    padding: 10px 40px;
+
+}
+.titulo__1{
+    color: #f4cc70;
+}
+.form__label{
+    color: #f4cc70;
+}
+@keyframes animate {
+ 0%{
+    transform: rotate(0deg);
+ }
+ 100%{
+    transform: rotate(360deg);
+
+ }
+}
+@media(max-width: 764px) {
+
+    .container__login {
+       
+        padding-left: 20%;
+    }
+    
+}

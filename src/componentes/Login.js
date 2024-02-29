@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import Uno from '../image/imagen1.webp'
-import Dos from '../image/imagen2.jpg'
-import Tres from '../image/imagen3.png'
+// import Uno from '../image/imagen1.webp'
+// import Dos from '../image/imagen2.jpg'
+// import Tres from '../image/imagen3.png'
+import "./css/Login.css";
 import { useNavigate } from 'react-router-dom';
-import firebaseapp from '../credenciales'
+import firebaseapp from '../credenciales';
 import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
 const auth = getAuth(firebaseapp)
 
@@ -28,8 +29,8 @@ const Log = () => {
 
     return(
       
-      <div className='row container p-4'>
-        <div className="col-md-8">
+      <div className="container__login">
+         {/* <div className="col-md-8">
           <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
@@ -52,18 +53,18 @@ const Log = () => {
             </button>
           </div>
 
-        </div>
+        </div>  */}
         {/* En esta seccion va el formulario  */}
-        <div className="col-md-4">
-          <div className='mt-5 ms-5'>
-              <h1>{registro ? 'Registrate': 'Inicia sesion'}</h1>
+        <div className="formulario__login">
+          <div className="formulario">
+              <h1 className="titulo__1">{registro ? 'Registrate': 'Inicia sesión'}</h1>
               <form onSubmit={handlerSubmit}>
                 <div className='mb-3'>
-                  <label className='form-label'>Correo electronico</label>
+                  <label className='form__label'>Correo electronico</label>
                   <input type="email" className='form-control' placeholder='Ingresar email' id='email' reqired/>
                 </div>
                 <div className='mb-3'>
-                  <label className='form-label'>Contraseña</label>
+                  <label className='form__label'>Contraseña</label>
                   <input type="password" className='form-control' placeholder='Ingresar contraseña' id='password' required/>
                 </div>
                 <button className='btn btn-primary' type='submit' >
@@ -74,8 +75,7 @@ const Log = () => {
             <button className='btn btn-secondary mt-4 form-control' onClick={()=> setRegistro(!registro)}>
               {registro ? 'Ya tienes una cuenta? inicia sesión' : 'No tienes cuenta? registrate'}
               </button>
-           </div>
-            
+           </div>  
           </div>
         </div>
       </div>

@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+.Navbar__container{
+  
+    box-sizing: border-box;
+   font-family:'Poppins',sans-serif;
+   justify-content: space-between;
+   
+}
+.navbar__nav{
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    min-height: 20vh;
+    background-color: #191919;
+    padding-left: 2%;
+}
+.titulo__Pagina{
+ 
+    font-size: 4rem;  
+    color: #f4cc70;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    padding: 0 23px;
+    text-align: center;
+   margin-right: 28px;
+}
+.navbar__ul{
+ display: flex;
+ text-decoration: none;
+ position: relative;
+ border-radius: 8px;
+ background-color: #222;
+ 
+}
+.navbar__ul span{
+  position: absolute;
+  top: 0%;
+  left: 43%;
+  width: 55px;
+  height: 100%;
+  background: linear-gradient(150deg,  rgb(30, 105, 105), #3aeaf0);
+  border-radius: 8px;
+  transition: .5s ease;
+  
+}
+.item__nav{
+  list-style: none;
+  padding-top: 2.3%;
+}
+
+.prueba{
+    text-decoration: none;
+    
+}
+
+.Nvitem{
+   color: aliceblue;
+  font-size: 2rem;  
+  text-decoration: none;
+  padding: 30px 23px;
+  
+}
+.Nvitem:hover{
+    border-color:#f4cc70;
+}
+
+  nav .item__nav:nth-child(2):hover~span {
+    left: 49%;
+    width: 189px;
+    top: 80%;
+    height: 8%;
+  }
+  nav .item__nav:nth-child(3):hover~span {
+    left: 71%;
+    width: 149px;
+    top: 80%;
+    height: 8%;
+  }
+  nav .item__nav:nth-child(4):hover~span {
+    left: 89%;
+    width: 102px;
+    top: 80%;
+    height: 8%;
+  }
+  .boton__SignOut{
+    border: 0;
+    background-image: linear-gradient(
+        150deg,
+        rgb(30, 105, 105), #3aeaf0
+        
+    );
+    border-radius: 8px;
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    padding: 4px;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: bold;
+    color: #f4cc70;
+    margin-left: 25%;
+  }
+  .boton__SignOut span{
+    background-color: #111;
+    padding: 16px 24px;
+    border-radius: 6px;
+    transition: .3s;
+  }
+
+  .boton__SignOut:hover span{
+   background: none;
+   color: #fff;
+  }
+  .boton__SignOut:active{
+   transform: scale(0.9);
+  }
+  @media(max-width: 848px) {
+    .navbar__nav {
+      flex-direction: column;
+      align-items: center;
+      padding: 2% 0;
+  }
+  
+  .titulo__Pagina {
+      font-size: 3rem;
+  }
+  .navbar__ul{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    position: relative;
+    border-radius: 8px;
+    background-color: #222;
+    padding: 0 0 30px ;
+   }
+   .navbar__ul span{
+    position: absolute;
+    left: 5%;
+    width: 83%;
+    top: 27%;
+    height: 4%;
+    background: linear-gradient(60deg, #2e3192, #f4cc70);
+    border-radius: 8px;
+    transition: .5s ease;
+  }
+  nav .item__nav:nth-child(2):hover~span {
+    left: 32%;
+    width: 35%;
+    top: 50%;
+    height: 4%;
+  }
+  nav .item__nav:nth-child(3):hover~span {
+    left: 36%;
+    width: 28%;
+    top: 68%;
+    height: 4%;
+  }
+  nav .item__nav:nth-child(4):hover~span {
+    left: 40%;
+    width: 20%;
+    top: 85%;
+    height: 4%;
+  }
+  
+  .Nvitem, .Nvitem__boton {
+     
+      font-size: 1.5rem;
+      padding: 20px;
+      flex-direction: column;
+  }
+  .Nvitem__boton{
+    margin-right: 20%;
+  }
+
+
+  }

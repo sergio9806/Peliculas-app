@@ -13,11 +13,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Route, Routes, BrowserRouter} from "react-router-dom";
 
 const auth = getAuth(firebaseapp)
+
 function App() {
    
   const [Usuario, setUsuario] = useState(null)
-  
-  
+ 
+
+
   
   onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
@@ -36,16 +38,16 @@ function App() {
         <BrowserRouter>
           <Navegar correoUsuario={Usuario.email} />
           <Routes>
-            <Route path='/' element={<Principal  />} />
-            <Route path='/Principal' element={<Principal  />} />
+            <Route path='/' element={<Principal usuario={Usuario}  />} />
+            <Route path='/Principal' element={<Principal  usuario={Usuario}  />} />
             <Route path='/Home' element={<Home  />} />
             <Route path='/Perfil' element={<Perfil  />} />
-            <Route path='/Detalle' element={<Detalle  />} />
+            <Route path='/Detalle/:movieId' element={<Detalle  />} />
           </Routes>
         </BrowserRouter>
       ) : (
         <BrowserRouter>
-        <Navegar2/>  
+        <Navegar2 />  
           <Routes>    
           <Route path='/' element={<Inicio />}/>
           <Route path='/Inicio' element={<Inicio />}/>

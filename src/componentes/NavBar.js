@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import firebaseapp from "../credenciales";
 import {getAuth,signOut} from "firebase/auth";
-import {getFirestore} from "firebase/firestore";
+import "./css/navbar.css";
+
 
 
 
 const auth = getAuth(firebaseapp)
 
 
-const db = getFirestore(firebaseapp)
+
 export const NavBar = ({correoUsuario}) => {
   const navigate = useNavigate();
   const navegar = ()=> {
@@ -17,36 +18,40 @@ export const NavBar = ({correoUsuario}) => {
     navigate("/Inicio");
   }
   return (
-    
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div className="container-fluid">
-    <a className="navbar-brand" >MovieWorld</a>
+    <div className="Navbar__container">
+    <nav className="navbar__nav">
+  
+    {/* <a className="navbar-brand" >MovieWorld</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul className="navbar-nav">
-
-      <li className="nav-item">
-          <Link className="nav-link" to='/Principal'>Mi espacio</Link>
+    </button> */}
+       
+      <ul className="navbar__ul">
+      <a className="titulo__Pagina">MovieWorld</a>
+      <li className="item__nav">
+          <Link className="Nvitem" to='/Principal'>Mi espacio</Link>
         </li>
 
-        <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to='/Home' >Cartelera</Link>
+        <li className="item__nav">
+          <Link className="Nvitem" aria-current="page" to='/Home' >Cartelera</Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to='/Perfil'>Perfil</Link>
+        <li className="item__nav">
+          <Link className="Nvitem" to='/Perfil'>Perfil</Link>
         </li>
+        
+        <span></span>
 
         {/* <li className="nav-item">
           <Link className="nav-link" to='/Detalle'></Link>
         </li> */}
-         <a className="bienvenido"> Bienvenido, <strong>{correoUsuario}</strong> haz iniciado sesión </a>
+         {/* <a className="bienvenido"> Bienvenido, <strong>{correoUsuario}</strong> haz iniciado sesión </a> */}
       </ul>
-      <button className='btn btn-info mb-6 mt-2 ' onClick={()=> navegar(signOut(auth))}>Cerrar sesión</button>
-    </div>
-  </div>
+      <button className="boton__SignOut">
+      <span  onClick={()=> navegar(signOut(auth))}>Cerrar sesión</span>
+       </button>
 </nav>
+
+</div>
   )
 }
 

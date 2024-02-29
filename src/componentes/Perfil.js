@@ -1,118 +1,104 @@
-import React, { useEffect, useState } from "react";
-//import {Link} from "react-router-dom";
-import firebaseapp from "../credenciales";
-import {getAuth} from "firebase/auth";
-import {getFirestore,collection,addDoc,getDoc,doc,deleteDoc,getDocs,setDoc } from "firebase/firestore";
 
+import React, { useState } from "react";
 
-const auth = getAuth(firebaseapp)
-const db = getFirestore(firebaseapp)
+import './css/perfil.css';
+
 const Perfil = () => {
+  const datosEmpresa = {
+    nombre: "MovieWoeld",
+    industria: "Cine",
+    telefono: "123-456-7890",
+    descripcion: "Pagina para ver trailers de las mejores y mas actuales peliculas",
 
-  const valorInicial={
-    Nombre:'',
-    Prioridad:'',
-    Area:'',
-    Detalle:''
-  }
-  //variables de estado 
-  const [user,setUser] = useState(valorInicial)
-  //para recuperar los datos de la lista 
-  const [lista,setLista] = useState([])
-  //para recuperar los datos especificos de la lista 
-  const [subId,setsubId] = useState('')
-  
-  //variable para capturar inputs 
-  const capturarInputs = (e) =>{
-    const {name,value} = e.target;
-    setUser({...user,[name]:value})
-  }
-  //funcion para guardar los datos 
-  const guardarDatos = async(e)=>{
-    e.preventDefault();
-    if (subId === '') {
-      try {
-        await addDoc(collection(db,'usuarios'),{
-          ...user
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    else{
-      await setDoc(doc(db,'usuarios',subId),{
-        ...user
-      })
-    }
-    
-    setUser({...valorInicial})
-    setsubId('')
-  }
-  //funcion para reenderizar la lista de ususarios 
-  useEffect(()=>{
-    const getLista = async()=>{
-      try {
-        const querySnapshot = await getDocs(collection(db,'usuarios'))
-        const docs =[]
-        querySnapshot.forEach((doc)=>{
-          docs.push({...doc.data(), id:doc.id})
-        })
-        setLista(docs)
-      } catch (error) {
-        
-      }
-    }
-    getLista()
-  },[lista])
-  //funcion para eliminar ususario
-  const deleteUser = async(id)=> {
-   await deleteDoc(doc(db,'usuarios',id))
-  }
-  //funcion para traer los datos espeficios 
-  const getOne = async(id)=>{
-    try {
-      const docRef = doc(db,'usuarios',id)
-      const docSnap = await getDoc(docRef)
-      setUser(docSnap.data())
-    } catch (error) {
-      console.log(error);
-    }
- 
-  }
- 
+  };
 
-  useEffect(()=>{
-    if (subId !== '') {
-      getOne(subId)
-    }
 
-  },[subId])
-    return(
-        
-<div className="container">
-    
-  <div className='row'>
-  <div className="col-md-4">
-  <h3 className="text-center mb-3">Perfil del usuario</h3>
-   <form onSubmit={guardarDatos}>
-     <div className='card card-body'>
-       <div className='form-group '>
-        <input type="text" name='Nombre' className='form-control mb-3' placeholder='Ingresar el nombre del usuario'
-        onChange={capturarInputs} value={user.Nombre}/>
-        <input type="text" name='Prioridad' className='form-control mb-3' placeholder='Ingresar el tipo de prioridad'
-        onChange={capturarInputs} value={user.Prioridad}/>
-        <input type="text" name='Area' className='form-control mb-3' placeholder='Ingresar el area'
-        onChange={capturarInputs} value={user.Area}/>
-        <input type="text" name='Detalle' className='form-control mb-3' placeholder='Ingresar el detalle'
-        onChange={capturarInputs} value={user.Detalle}/>
-       </div>
-       <button className="btn btn-primary">{subId=== '' ? 'Guardar': 'Actualizar'}</button>
-     </div>
-   </form>
-  </div>
-  </div>
-</div>
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [comment, setComment] = useState('');
 
- )
-}
-export default Perfil
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Aquí podrías enviar los datos a tu servidor o hacer lo que necesites con ellos
+    console.log('Nombre:', name);
+    console.log('Correo:', email);
+    console.log('Teléfono:', phone);
+    console.log('Comentario:', comment);
+
+  };
+
+  return (
+
+    <body className="bodyPerfil">
+      <h1 className="h1__tittlePerfil">MovieWorld</h1>
+      <div class="night">
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+      </div>
+
+      <div className="perfil__container">
+        <div className="perfil__cuadro">
+          <h1>Perfil Empresarial</h1>
+          <p><strong>Nombre:</strong> {datosEmpresa.nombre}</p>
+          <p><strong>Industria:</strong> {datosEmpresa.industria}</p>
+          <p><strong>Descripción:</strong> {datosEmpresa.descripcion}</p>
+          <p><strong>Contacto:</strong> {datosEmpresa.telefono}</p>
+        </div>
+      </div>
+
+      <div className="perfil__containerBuzon">
+      <div className="perfil__buzon">
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Nombre:
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Correo:
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Teléfono:
+            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Comentario:
+            <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
+          </label>
+        </div>
+        <button type="submit">Enviar comentario</button>
+      </form>
+      </div>
+      </div>
+    </body>
+  );
+};
+
+export default Perfil;
+
+
+
