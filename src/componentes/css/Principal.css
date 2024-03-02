@@ -249,10 +249,98 @@ background: rgba(0,0,0.9);
   transition: .3s;
 }
 
-  .botton__movie:hover span{
-   background: none;
-   color: #fff;
-  }
-  .botton__movie:active{
-   transform: scale(0.9);
-  }
+.botton__movie:hover span{
+ background: none;
+ color: #fff;
+}
+.botton__movie:active{
+ transform: scale(0.9);
+}
+/*carousel peliculas por ver */
+.card__fav {
+  padding-top: 2%;
+  background: hsla(250, 6%, 20%, 1);
+  position: static;
+}
+
+.Carousel__Favorites1 {
+  display: flex;
+  padding-bottom: 1%;
+  position: static;
+}
+.imgbox{
+  position: static;
+}
+.Carousel__FavoritesContainer {
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  
+}
+
+.img__carFav {
+  width: 100%;
+  height: 290px;
+  
+  
+
+}
+
+.Carousel__Favorites1 {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  
+}
+
+.Carousel__Favorites {
+  padding-left: 10px;
+  position: relative; /* Añadido */
+  display: flex;
+  position: static;
+}
+
+.details{
+  display: none;
+  width: 210px;
+  height: 290px;
+  font-size: 25px;
+  background-color: #303030;
+  color: #f4cc70;
+  text-align: center;
+  justify-content: center;
+  padding-top: 5%;
+  
+  
+}
+.details h1{
+  font-size: 25px;
+}
+.Carousel__Favorites:hover .details{
+  display:block;
+}
+.btnmovie{
+  padding-top: 10%;
+  padding-bottom: 7%;
+}
+.movie__vista{
+     background-color: rgb(35, 199, 35);
+     color: #fff;
+     border-style: none;
+     border-radius: 5px;
+     
+}
+.movie__vista:hover{
+  background-color: rgb(21, 153, 21);
+}
+.btn__deleteMovie{
+  background-color:rgb(247, 75, 75);
+  
+     color: #fff;
+     border-style: none;
+     border-radius: 5px;
+}
+.btn__deleteMovie:hover{
+  background-color: rgb(204, 37, 37);
+}
