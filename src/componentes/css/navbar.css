@@ -5,7 +5,7 @@
     box-sizing: border-box;
    font-family:'Poppins',sans-serif;
    justify-content: space-between;
-   
+  
 }
 .navbar__nav{
     display: flex;
@@ -14,6 +14,7 @@
     min-height: 20vh;
     background-color: #191919;
     padding-left: 2%;
+   
 }
 .titulo__Pagina{
  
@@ -33,9 +34,10 @@
  border-radius: 8px;
  background-color: #222;
  
+ 
 }
 .navbar__ul span{
-  position: absolute;
+  position:absolute;
   top: 0%;
   left: 43%;
   width: 55px;

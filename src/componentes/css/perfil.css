@@ -6,13 +6,16 @@
   font-family: "Anton", sans-serif;
   justify-content: center;
   align-items: center;
+  
+ 
 }
 
 .night {
-  position: relative;
+  position:relative;
   width: 100%;
   height: 100%;
   transform: rotateZ(45deg);
+  
 }
 
 .shooting_star {
@@ -430,6 +433,7 @@
   padding: 20px;
   border-radius: 10px;
   text-align: justify;
+  position: fixed;
 }
 
 .perfil__cuadro {
@@ -445,6 +449,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  position: fixed;
 }
 
 .perfil__buzon {
@@ -458,7 +463,7 @@
   background: transparent;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed ;
   padding-right: 100%;
   top: auto;
   left: 75%;

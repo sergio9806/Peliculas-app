@@ -31,27 +31,6 @@ const Perfil = () => {
   return (
 
     <body className="bodyPerfil">
-      <h1 className="h1__tittlePerfil">MovieWorld</h1>
-      <div class="night">
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-      </div>
 
       <div className="perfil__container">
         <div className="perfil__cuadro">
@@ -93,6 +72,27 @@ const Perfil = () => {
         <button type="submit">Enviar comentario</button>
       </form>
       </div>
+      </div>
+      <h1 className="h1__tittlePerfil">MovieWorld</h1>
+      <div class="night">
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
+        <div className="shooting_star"></div>
       </div>
     </body>
   );
