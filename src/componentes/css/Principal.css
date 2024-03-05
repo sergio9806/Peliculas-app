@@ -52,7 +52,7 @@
   padding-top: 3%;
   width: 49%;
   position: absolute;
-  background: linear-gradient(to right, black,rgb(30, 105, 105));
+  background: hsla(250, 6%, 20%, 1);
   height: 80vh;
 }
 /*seccion carousel peliculas*/
@@ -77,10 +77,6 @@
   border: none;
   margin-right: 4px;
 }
-.peliculas__seccion3 .indicadores_peliculas3 button:hover,
-.peliculas__seccion3 .indicadores_peliculas3 button.activo{
-background-color: red;
-}
 
 /*consiguracion  flechas*/
 .container__peliculas3 .container__principal3{
@@ -88,10 +84,21 @@ background-color: red;
   align-items: center;
   position: relative;
 }
+.container__peliculas3 .container__principal3:hover{
+ .flecha__derecha3{
+  display:block;
+  position: absolute;
+ }
+ .flecha__izquierda3{
+  display:block;
+  position: absolute;
+ }
+}
 
 .container__peliculas3 .container__principal3 .flecha__izquierda3,
 .container__peliculas3 .container__principal3 .flecha__derecha3{
-position: absolute;
+position:absolute;
+display: none;
 border: none;
 background: rgba(0,0,0,0.3);
 font-size: 40px;
@@ -113,6 +120,7 @@ background: rgba(0,0,0.9);
 }
 .container__peliculas3 .container__principal3 .flecha__derecha3{
   right: 0;
+  
 }
 
 /*contenedor carousel*/
@@ -161,7 +169,7 @@ background: rgba(0,0,0.9);
 }
 
 .favorites__movies{
-  background-color: black;
+  background: hsla(250, 6%, 20%, 1);
 }
 /*inforacion  de la pelicula*/
 .stats{
@@ -232,6 +240,7 @@ background: rgba(0,0,0.9);
       #3aeaf0
       
   );
+
   border-radius: 8px;
   color: #fff;
   display: flex;
@@ -242,6 +251,7 @@ background: rgba(0,0,0.9);
   font-weight: bold;
   color: #f4cc70;
 }
+
 .botton__movie span{
   background-color: #111;
   padding: 16px 24px;
@@ -259,10 +269,22 @@ background: rgba(0,0,0.9);
 /*carousel peliculas por ver */
 .card__fav {
   padding-top: 2%;
-  background: hsla(250, 6%, 20%, 1);
+  background: hsla(220, 17%, 7%, 1);
   position: static;
 }
-
+.card__fav h1{
+color: aliceblue;
+padding-bottom: 2%;
+padding-left: 2%;
+}
+.card__fav2{
+  background: hsla(220, 17%, 7%, 1);
+}
+.card__fav2 h1{
+  color:aliceblue;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  }
 .Carousel__Favorites1 {
   display: flex;
   padding-bottom: 1%;
@@ -270,6 +292,7 @@ background: rgba(0,0,0.9);
 }
 .imgbox{
   position: static;
+ 
 }
 .Carousel__FavoritesContainer {
   display: flex;
@@ -277,13 +300,13 @@ background: rgba(0,0,0.9);
   scrollbar-width: none;
   -ms-overflow-style: none;
   scroll-behavior: smooth;
+  margin-left: 1%;
   
 }
 
 .img__carFav {
   width: 100%;
-  height: 290px;
-  
+  height: 310px;
   
 
 }
@@ -304,14 +327,14 @@ background: rgba(0,0,0.9);
 .details{
   display: none;
   width: 210px;
-  height: 290px;
+  height: 310px;
   font-size: 25px;
   background-color: #303030;
   color: #f4cc70;
   text-align: center;
   justify-content: center;
   padding-top: 5%;
-  
+
   
 }
 .details h1{
