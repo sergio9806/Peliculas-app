@@ -1,15 +1,120 @@
 /*area general*/
-.container__informacion{
-    background-color: #303030;
-    
+.Detalle__principal{
+    background: hsla(220, 17%, 7%, 1);
 }
 
 /*area informacion peliculas*/
-.container__informacion{
-   padding-top: 3%;
-}
-.portada__pelicula{
-    width: 20%;
-    height: 300;
-}
 
+.informacion__movie{
+    display: flex;
+
+}
+.info__movie{
+    width: 50%;
+   padding-left: 2%;
+   padding-right: 2%;
+   
+}
+.info__movie p{
+    font-size: 22px;
+    padding-top: 2%;
+    text-align: justify;
+}
+.stats__detalle{
+    display: flex;
+    color:  #f4cc70;
+}
+.stats__detalle h2{
+    font-size: 20px;
+}
+.titulo__movie{
+    font-size: 60px;
+    color: #3aeaf0;
+    padding-top: 4%;
+}
+.text__movie{
+   
+    color: aliceblue;
+}
+.video__movie{
+    padding-left: 2%;
+    padding-top: 4%;
+    width: 50%;
+    background: hsla(250, 6%, 20%, 1);
+}
+.reproductor__container{
+   
+    padding-left: 8%;
+}
+.cast__list{
+    color: aliceblue;
+}
+.cast__list h3{
+    padding-top: 3%;
+    font-size: 35px;
+    color:  #f4cc70;
+}
+.boton__play{
+    border: 0;
+    background-image: linear-gradient(
+        150deg,
+        rgb(30, 105, 105), #3aeaf0
+        
+    );
+    border-radius: 8px;
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    padding: 4px;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: bold;
+    color: #f4cc70;
+    margin-left: 2%;
+}
+.boton__play span{
+    background-color: #111;
+    padding: 16px 24px;
+    border-radius: 6px;
+    transition: .3s;
+  }
+
+  .boton__play:hover span{
+   background: none;
+   color: #fff;
+  }
+  .boton__play:active{
+   transform: scale(0.9);
+  }
+  .boton__close{
+    border: 0;
+    background-image: linear-gradient(
+        150deg,
+        rgb(30, 105, 105), #3aeaf0
+        
+    );
+    border-radius: 8px;
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    padding: 4px;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: bold;
+    color: #f4cc70;
+    margin-left: 77%;
+}
+.boton__close span{
+    background-color: #111;
+    padding: 16px 24px;
+    border-radius: 6px;
+    transition: .3s;
+  }
+
+  .boton__close:hover span{
+   background: none;
+   color: #fff;
+  }
+  .boton__close:active{
+   transform: scale(0.9);
+  }

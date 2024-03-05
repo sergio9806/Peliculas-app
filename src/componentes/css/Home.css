@@ -94,7 +94,7 @@
 .peliculas__seccion{
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  flex: end;
 }
 .peliculas__seccion h3{
   font-size: 30px;

@@ -12,7 +12,6 @@ import { getFirestore, collection, addDoc, getDoc, doc, getDocs, setDoc, deleteD
 const db = getFirestore(firebaseapp);
 const API_URL = process.env.REACT_APP_API_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
-
 const URL_IMAGE = process.env.REACT_APP_URL_IMAGE;
 
 const Principal = ({ usuario }) => {
@@ -36,9 +35,7 @@ const Principal = ({ usuario }) => {
     Idpelicula: '',
     correo: '',
     urlima: '',
-    descrip_movie: '',
-    calificacion:'', 
-    comentario_personal: ''
+    descrip_movie: ''
   });
   const [Window1, Windowstate] = useState(false);
   const [Window1vista, Windowstatevista] = useState(false);
@@ -69,16 +66,10 @@ const Principal = ({ usuario }) => {
       Idpelicula: datosCarousel.Idpelicula,
       correo: datosCarousel.correo,
       urlima: datosCarousel.urlima,
-      descrip_movie: datosCarousel.overview,
-      calificacion:'', 
-      comentario_personal: ''
+      descrip_movie: datosCarousel.overview
     });
   }
-  //capturar inputs 
-  const capturarInputs = (e) =>{
-    const {name,value} = e.target;
-    setUserVista({...user,[name]:value})
-  }
+  
   //funcion para guardar los datos  en la bd usuarios
   const guardarDatos = async (e) => {
     e.preventDefault();
@@ -104,15 +95,15 @@ const Principal = ({ usuario }) => {
       } else {
         await setDoc(doc(db, 'vistas', subId), { ...datosPelicula });
       }
-      setUser({ Nombre: '', Idpelicula: '', correo: '', urlima: '', descrip_movie: '', comentario_personal: '', calificacion: '' });
+      setUser({ Nombre: '', Idpelicula: '', correo: '', urlima: '', descrip_movie: '' });
       setsubId('');
       Windowstatevista(false);
-    }   
+    }
     catch (error) {
       console.log(error);
     }
   }
-  
+
   //evento listener para flecha derecha
   const fechtIndicadores = () => {
     if (flechaDerecha2 !== null) {
@@ -201,8 +192,8 @@ const Principal = ({ usuario }) => {
     }
     getLista()
   }, [lista])
-   //funcion para traer los datos de la tabla vista 
-   useEffect(() => {
+  //funcion para traer los datos de la tabla vista 
+  useEffect(() => {
     const getListavista = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'vistas'))
@@ -242,7 +233,7 @@ const Principal = ({ usuario }) => {
     }
 
   }, [subId]);
- 
+
   //animacion 
 
   useEffect(() => {
@@ -324,7 +315,7 @@ const Principal = ({ usuario }) => {
                   ))}
                 </div>
               </div>
-              <button  id='flecha__derecha3' className="flecha__derecha3">{'>'}</button>
+              <button id='flecha__derecha3' className="flecha__derecha3">{'>'}</button>
             </div>
           </div>
         </div>
@@ -341,7 +332,7 @@ const Principal = ({ usuario }) => {
           </div>
           <p className="text__overview">{movie.overview}</p>
           {/* Renderizar la información del elenco */}
-          <div className="cast__list">
+          <div className="cast__listPrincipal">
             <h3>Elenco:</h3>
             <p>{cast.map(actor => actor.name).join(", ")}</p>
           </div>
@@ -399,25 +390,14 @@ const Principal = ({ usuario }) => {
                       >
                         <Opcionesfav>
                           <Opciones2fav>
-                          <form onSubmit={(e) => guardarDatosVistas(e, list)}>
+                            <form onSubmit={(e) => guardarDatosVistas(e, list)}>
                               <h1 name='Nombre_vista' >{list.Nombre}</h1>
                               <p name='Idpelicula_vista' className='id-pelicula2'>{list.Idpelicula}</p>
                               <p name='correo_vista' className='correo-info2'>{list.correo}</p>
                               <p name='urlima_vista' className='urlFavImagen2'>${list.urlima}</p>
-                              <p name='descrip_movie_vista' className='descrip_moviebd2'>{list.overview}</p>
-                              <div className='calificacion'>
-                                <h3>Califica la película</h3>
-                                <select name='calificacion' className='select__calificacion' onChange={capturarInputs} value={userVista.calificacion}>
-                                  <option>Mala</option>
-                                  <option>Regular</option>
-                                  <option>Buena</option>
-                                  <option>Muy buena</option>
-                                  <option>Excelente</option>
-                                </select>
-                              </div>
-                              <input name='comentario_personal' className='comentario_personal' placeholder='Añade un comentario sobre la pelicula' onChange={capturarInputs} value={userVista.comentario_personal}></input>
+                              <p name='descrip_movie_vista' className='descrip_moviebd2'>{list.overview}</p>                            
                               <h2>¿Deseas agregar esta película a peliculas vistas?</h2>
-                              <button onClick={(e) => guardarDatosVistas(e, list,deleteUser(list.id))}>Agregar</button>
+                              <button onClick={(e) => guardarDatosVistas(e, list, deleteUser(list.id))}>Agregar</button>
 
 
                             </form>
@@ -449,8 +429,8 @@ const Principal = ({ usuario }) => {
         </div>
       </div>
 
-         {/* carrusel de peliculas vistas  */}
-         <div className='card__fav'>
+      {/* carrusel de peliculas vistas  */}
+      <div className='card__fav2'>
         <h1>Películas vistas</h1>
         <div className='Carousel__FavoritesContainer'>
           {
@@ -466,9 +446,9 @@ const Principal = ({ usuario }) => {
                     <div className='details'>
                       <h1>{list.Nombre}</h1>
                       <section className='btnmovie'>
-                        <button className='movie__vista' onClick={() => Windowstatevista(true)} >Película vista</button>
+                        <button className='movie__vista' onClick={() => Windowstatevista(true)} >Calificar</button>
                       </section>
-                        {/* aqui va el modal3 */}
+                      {/* aqui va el modal3 */}
                       <button className='btn__deleteMovie' onClick={() => deleteUserVistas(list.id)}>
                         Eliminar película
                       </button>
@@ -487,7 +467,7 @@ const Principal = ({ usuario }) => {
       </div>
 
 
-        {/* valoracion de peliculas  */}
+      {/* valoracion de peliculas  */}
 
       <div>
         <h1>SECCION DE VALORACION DE PELICULAS </h1>
@@ -525,6 +505,10 @@ button{
   font-style: bold;
   color:#fff;
   padding-bottom:6px;
+}
+button:hover{
+  background-color: darkgreen;
+  transition: 0.5s;
 }
 .correo-info{
   display: none;

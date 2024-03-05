@@ -82,3 +82,43 @@
         </ul>
       </nav>
     </div>
+    
+    //capturar inputs
+    <div className='calificacion'>
+                                <h3>Califica la película</h3>
+                                <select name='calificacion' className='select__calificacion' onChange={capturarInputs} value={userVista.calificacion}>
+                                  <option>Mala</option>
+                                  <option>Regular</option>
+                                  <option>Buena</option>
+                                  <option>Muy buena</option>
+                                  <option>Excelente</option>
+                                </select>
+                              </div>
+                              <input name='comentario_personal' className='comentario_personal' placeholder='Añade un comentario sobre la pelicula' onChange={capturarInputs} value={userVista.comentario_personal}></input>
+
+
+  const guardarDatosVistas = async (e, datosPelicula, props) => {
+    e.preventDefault();
+    try {
+      if (subId === '') {
+        await addDoc(collection(db, 'vistas'), { ...datosPelicula });
+      } else {
+        await setDoc(doc(db, 'vistas', subId), { ...datosPelicula });
+      }
+      setUser({ Nombre: '', Idpelicula: '', correo: '', urlima: '', descrip_movie: '', comentario_personal: '', calificacion: '' });
+      setsubId('');
+      Windowstatevista(false);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+
+//capturar inputs 
+  const capturarInputs = (e) => {
+    const { name, value } = e.target;
+    setUserVista({ ...user, [name]: value })
+  }
+
+  
