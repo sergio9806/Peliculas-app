@@ -1,11 +1,23 @@
-import Dos from '../image/cubo_fondo.webp'
+import Portada from '../image/pantalla_cine2.jpg'
+// import Uno from '../image/rollo-de-pelicula.png'
+// import Dos from '../image/combo.png'
+// import Tres from '../image/sodaneon.png';
+import logo from "../image/palomitasneon.png";
+// import combo from "../image/combo2.png";
+// import lentes from "../image/lentesneon2.png";
+// import refresco from "../image/refresconeon2.png";
+// import camara from "../image/camara.png";
+// import boleto from "../image/boleto.png";
+// import accion from "../image/accion.png";
+// import tira from "../image/tira.png";
 import "./css/Principal.css"
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import styled from "styled-components";
 import Modal from './Modal';
 import Modal2 from './modal2';
-import anime from 'animejs/lib/anime.es.js';
+import Modal3 from './Modal3';
+// import anime from 'animejs/lib/anime.es.js';
 import firebaseapp from "../credenciales";
 import { getFirestore, collection, addDoc, getDoc, doc, getDocs, setDoc, deleteDoc } from "firebase/firestore";
 
@@ -20,7 +32,8 @@ const Principal = ({ usuario }) => {
   //para recuperar los datos especificos de la lista 
   const [subId, setsubId] = useState('');
   const [lista, setLista] = useState([]);
-  const [ListaVista, setListaVista] = useState([])
+  const [ListaVista, setListaVista] = useState([]);
+  const [ListaCali, setListaCali] = useState([])
   //datos de la tabla usuarios
   const [user, setUser] = useState({
     Nombre: '',
@@ -37,8 +50,17 @@ const Principal = ({ usuario }) => {
     urlima: '',
     descrip_movie: ''
   });
+  //datos tabla de calificaciones
+  const [userCalificacion, setUserCalificacion] = useState({
+    nombrePeli: '',
+    Idpelicula: '',
+    correo: '',
+    calificacion: '',
+    comentario: ''
+  });
   const [Window1, Windowstate] = useState(false);
   const [Window1vista, Windowstatevista] = useState(false);
+  const [Window1calificacion, Windowstatecalificacion] = useState(false);
   const [movies, setMovies] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   const [movie, setMovie] = useState({ title: "loading page" });
@@ -69,7 +91,22 @@ const Principal = ({ usuario }) => {
       descrip_movie: datosCarousel.overview
     });
   }
-  
+  //capturar los datos de la tabla calificaciones
+  const capturardatosCalificaciones = (datosCalificaciones) => {
+    setUserCalificacion({
+      Nombre: datosCalificaciones.Nombre,
+      Idpelicula: datosCalificaciones.Idpelicula,
+      correo: datosCalificaciones.correo,
+      calificacion: datosCalificaciones.calificacion,
+      comentario: datosCalificaciones.comentario
+    });
+  }
+  //constantes para mostrar u ocultar las categoias de las calificaciones 
+  const [mostrarMuyMalas, setMostrarMuyMalas] = useState(false);
+  const [mostrarRegular, setMostrarRegular] = useState(false);
+  const [mostrarBuenas, setMostrarBuenas] = useState(false);
+  const [mostrarMuyBuenas, setMostrarMuyBuenas] = useState(false);
+  const [mostrarExcelente, setMostrarExcelente] = useState(false);
   //funcion para guardar los datos  en la bd usuarios
   const guardarDatos = async (e) => {
     e.preventDefault();
@@ -79,7 +116,7 @@ const Principal = ({ usuario }) => {
       } else {
         await setDoc(doc(db, 'usuarios', subId), { ...user });
       }
-      setUser({ Nombre: '', Idpelicula: '', correo: '', urlima: '', descrip_movie: '' }); // Reiniciar el estado del usuario
+      setUser({ Nombre: '', Idpelicula: '', correo: '', urlima: '', descrip_movie: '' });
       setsubId('');
       Windowstate(false);
     } catch (error) {
@@ -90,20 +127,54 @@ const Principal = ({ usuario }) => {
   const guardarDatosVistas = async (e, datosPelicula, props) => {
     e.preventDefault();
     try {
-      if (subId === '') {
-        await addDoc(collection(db, 'vistas'), { ...datosPelicula });
-      } else {
-        await setDoc(doc(db, 'vistas', subId), { ...datosPelicula });
-      }
-      setUser({ Nombre: '', Idpelicula: '', correo: '', urlima: '', descrip_movie: '' });
-      setsubId('');
-      Windowstatevista(false);
+        if (subId === '') {
+            await addDoc(collection(db, 'vistas'), { ...datosPelicula });
+        } else {
+            await setDoc(doc(db, 'vistas', subId), { ...datosPelicula });
+        }
+        setUser({ Nombre: '', Idpelicula: '', correo: '', urlima: '', descrip_movie: '' });
+        setsubId('');
+        Windowstatevista(false);
+    } catch (error) {
+        console.log(error);
     }
-    catch (error) {
-      console.log(error);
+}
+  //funcion para guardar los datos  en la bd calificaciones 
+  const guardarDatosCalificaciones = async (e, list) => {
+    e.preventDefault();
+    try {
+      const calificacionData = {
+        Nombre__calificacion: list.Nombre,
+        Idpelicula__calificacion: list.Idpelicula,
+        correo__calificacion: list.correo,
+        calificacion: userCalificacion.calificacion,
+        comentario_personal: userCalificacion.comentario
+      };
+  
+      await addDoc(collection(db, 'calificaciones'), calificacionData);
+      // Aquí podrías también actualizar el estado local o hacer cualquier otra acción necesaria
+    } catch (error) {
+      console.error("Error al guardar la calificación:", error);
     }
-  }
+  };
+  
 
+
+  useEffect(() => {
+    const getListaCali = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'calificaciones'));
+        const docs = [];
+        querySnapshot.forEach((doc) => {
+          docs.push({ ...doc.data(), id: doc.id });
+        });
+        setListaCali(docs);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getListaCali();
+  }, []);
   //evento listener para flecha derecha
   const fechtIndicadores = () => {
     if (flechaDerecha2 !== null) {
@@ -203,11 +274,27 @@ const Principal = ({ usuario }) => {
         })
         setListaVista(docs)
       } catch (error) {
-
+        console.log(error);
       }
     }
     getListavista()
   }, [ListaVista])
+  //funcion para traer los datos de la tabla calificacion 
+  useEffect(() => {
+    const getListaCali = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'calificacion'))
+        const docs = []
+        querySnapshot.forEach((doc) => {
+          docs.push({ ...doc.data(), id: doc.id })
+        })
+        setListaCali(docs)
+      } catch (error) {
+
+      }
+    }
+    getListaCali()
+  }, [ListaCali])
   //funcion para eliminar películas de la tabla usuarios 
   const deleteUser = async (id) => {
     await deleteDoc(doc(db, 'usuarios', id))
@@ -216,6 +303,10 @@ const Principal = ({ usuario }) => {
   const deleteUserVistas = async (id) => {
     await deleteDoc(doc(db, 'vistas', id))
   }
+  //funcion para eliminar películas de la tabla vistas 
+  // const deleteUserCalificacion = async (id) => {
+  //   await deleteDoc(doc(db, 'calificaciones', id))
+  // }
   //funcion para traer los datos espeficios 
   const getOne = async (id) => {
     try {
@@ -236,73 +327,85 @@ const Principal = ({ usuario }) => {
 
   //animacion 
 
-  useEffect(() => {
+ /* useEffect(() => {
     function randomValues() {
       anime({
-        targets: ".square, .circle, .triangle",
+        targets: ".lentes1, .soda1, .palomitas1",
         translateX: function () {
-          return anime.random(-500, 500);
+          return anime.random(-100 + window.innerWidth * 0.5, 100 + window.innerWidth * 0.5);
         },
         translateY: function () {
-          return anime.random(-300, 300);
+          return anime.random(-300 + window.innerHeight * 0.42, 300 + window.innerHeight * 0.42);
         },
         rotate: function () {
-          return anime.random(0, 360);
+          return anime.random(0, 40);
         },
         scale: function () {
           return anime.random(0.2, 2);
         },
         duration: 5000,
         easing: "easeInOutQuad",
-        complete: randomValues
+        complete: function() {
+          anime({
+            targets: ".lentes1, .soda1, .palomitas1",
+            translateX: window.innerWidth * 0.5,
+            translateY: window.innerHeight * 0.42,
+            duration: 5000,
+            easing: "easeInOutQuad",
+            complete: randomValues
+          });
+        }
       });
     }
-
+  
     randomValues();
-
-
+  
     return () => {
-      anime.remove(".square, .circle, .triangle");
+      anime.remove(".lentes1, .soda1, .palomitas1");
     };
-  }, []);
+  }, []);*/
+
+
   return (
 
     <main className='main__Principal'>
-      <div>
-        <img src={Dos} alt="" className='tamaño__imagen' height={800} />
-        <div className="bodyp">
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
 
-          <div className="circle"></div>
-          <div className="circle"></div>
-          <div className="circle"></div>
-          <div className="circle"></div>
-          <div className="circle"></div>
+      <section className='banner__animacion'>
+        <img src={Portada} alt="" className='tamaño__imagen' height={800} />
+        <section className="bodyp">
+          <article className='logo__cine'><img src={logo} alt="" className='tamaño__logo' /></article>
+          <div className='titulo__movimiento'><span className='titulo__animado'>MovieWorld</span></div>
+         {/* <article className="lentes1"><img src={Uno} alt="" className='tamaño__imagen' /></article>
+          <article className="lentes2"><img src={Uno} alt="" className='tamaño__imagen' /></article>
+          <article className="lentes3"><img src={Uno} alt="" className='tamaño__imagen' /></article>
 
-          <div className="triangle"></div>
-          <div className="triangle"></div>
-          <div className="triangle"></div>
-          <div className="triangle"></div>
-          <div className="triangle"></div>
-        </div>
-      </div>
-      <div>
+          <article className="palomitas1"><img src={Tres} alt="" className='tamaño__imagen' /></article>
+          <article className="palomitas2"><img src={Tres} alt="" className='tamaño__imagen' /></article>
+          <article className="palomitas3"><img src={Tres} alt="" className='tamaño__imagen' /></article>
+          
+          <article className="soda2"><img src={Dos} alt="" className='tamaño__imagen' /></article>
+          <article className="soda3"><img src={Dos} alt="" className='tamaño__imagen' /></article>
+          *seccion fija*
+          <article className="combo__neon"><img src={combo} alt="" className='tamaño__imagen' /></article>
+          <article className="refresco__neon"><img src={refresco} alt="" className='tamaño__imagen' /></article>
+          <article className="lentes__neon"><img src={lentes} alt="" className='tamaño__imagen' /></article>
+          <article className="camara__neon"><img src={camara} alt="" className='tamaño__imagen' /></article>
+          <article className="boleto__neon"><img src={boleto} alt="" className='tamaño__imagen' /></article>
+          <article className="accion__neon"><img src={accion} alt="" className='tamaño__imagen' /></article>
+  <article className="tira__neon"><img src={tira} alt="" className='tamaño__imagen' /></article>*/}
+        </section>
+      </section>
+      <section>
         <form className="buscador__Principal" onSubmit={searchMovies}>
           <input className="buscador__barraP" type='text' placeholder='search' onChange={(e) => setSearchKey(e.target.value)} />
           <button className="buscador__botonP">Buscar</button>
         </form>
-      </div>
-      <div className='contenedor__Principal'>
-        <div className='lado1'>
-          <div>
+      </section>
+      <section className='contenedor__Principal'>
+        <section className='lado1'>
 
-          </div>
           {/* contenedor de poster de peliculas */}
-          <div className='container__peliculas3'>
+          <section className='container__peliculas3'>
 
             <div className="container__principal3">
               <button id='flecha__izquierda3' className="flecha__izquierda3"> {'<'}</button>
@@ -317,9 +420,9 @@ const Principal = ({ usuario }) => {
               </div>
               <button id='flecha__derecha3' className="flecha__derecha3">{'>'}</button>
             </div>
-          </div>
-        </div>
-        <div className='lado2'>
+          </section>
+        </section>
+        <section className='lado2'>
           <div className='title__button'>
             <h1 className="text_movie">{movie.title}</h1>
             <button className='botton__movie'>
@@ -336,8 +439,8 @@ const Principal = ({ usuario }) => {
             <h3>Elenco:</h3>
             <p>{cast.map(actor => actor.name).join(", ")}</p>
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
       <Modal
         estado={Window1}
         cambiarEstado={Windowstate}
@@ -371,94 +474,125 @@ const Principal = ({ usuario }) => {
             lista
               .filter(list => list.correo === usuario.email)
               .map(list => (
-                <div key={list.id} className='Carousel__Favorites1'>
-                  <div key={list.Idpelicula} className='Carousel__Favorites'>
+                <div key={list.id} className='Carousel__Favorites1C'>
+                  <div key={list.Idpelicula} className='Carousel__Favorites1'>
                     <div className='imgbox'>
                       <img className='img__carFav' src={list.urlima} alt="" />
                     </div>
-
                     <div className='details'>
                       <h1>{list.Nombre}</h1>
                       <section className='btnmovie'>
                         <button className='movie__vista' onClick={() => Windowstatevista(true)} >Película vista</button>
                       </section>
-                      <Modal2
-                        estadovista={Window1vista}
-                        cambiarEstadovista={Windowstatevista}
-                        capturardatosVistas={capturardatosVistas}
-                        datosPelicula={list} // Pasar los datos de la película como prop
-                      >
-                        <Opcionesfav>
-                          <Opciones2fav>
-                            <form onSubmit={(e) => guardarDatosVistas(e, list)}>
-                              <h1 name='Nombre_vista' >{list.Nombre}</h1>
-                              <p name='Idpelicula_vista' className='id-pelicula2'>{list.Idpelicula}</p>
-                              <p name='correo_vista' className='correo-info2'>{list.correo}</p>
-                              <p name='urlima_vista' className='urlFavImagen2'>${list.urlima}</p>
-                              <p name='descrip_movie_vista' className='descrip_moviebd2'>{list.overview}</p>                            
-                              <h2>¿Deseas agregar esta película a peliculas vistas?</h2>
-                              <button onClick={(e) => guardarDatosVistas(e, list, deleteUser(list.id))}>Agregar</button>
-
-
-                            </form>
-
-                          </Opciones2fav>
-                          <Opciones3fav>
-                            <div key={movie.id}>
-
-                              <img src={`${list.urlima}`} alt="" width={110} height={150} />
-                            </div>
-                          </Opciones3fav>
-                        </Opcionesfav>
-
-                      </Modal2>
                       <button className='btn__deleteMovie' onClick={() => deleteUser(list.id)}>
                         Eliminar película
                       </button>
+                      <Modal2
+                    estadovista={Window1vista}
+                    cambiarEstadovista={Windowstatevista}
+                    capturardatosVistas={capturardatosVistas}
+                    datosPelicula={list} 
+                  >
+                    <Opcionesfav>
+                      <Opciones2fav>
+                        <form onSubmit={(e) => guardarDatosVistas(e, list)}>
+                          <h1 name='Nombre_vista' >{list.Nombre}</h1>
+                          <p name='Idpelicula_vista' className='id-pelicula2'>{list.Idpelicula}</p>
+                          <p name='correo_vista' className='correo-info2'>{list.correo}</p>
+                          <p name='urlima_vista' className='urlFavImagen2'>${list.urlima}</p>
+                          <p name='descrip_movie_vista' className='descrip_moviebd2'>{list.overview}</p>
+                          <h2>¿Deseas agregar esta película a peliculas vistas?</h2>
+                          <button onClick={(e) => guardarDatosVistas(e, list, deleteUser(list.id))}>Agregar</button>
+
+
+                        </form>
+
+                      </Opciones2fav>
+                      <Opciones3fav>
+                        <div key={movie.id}>
+
+                          <img src={`${list.urlima}`} alt="" width={110} height={150} />
+                        </div>
+                      </Opciones3fav>
+                    </Opcionesfav>
+
+                  </Modal2>
 
                     </div>
 
                   </div>
-
-
-
+                  
                   <hr />
                 </div>
               ))
           }
+
         </div>
       </div>
 
       {/* carrusel de peliculas vistas  */}
       <div className='card__fav2'>
         <h1>Películas vistas</h1>
-        <div className='Carousel__FavoritesContainer'>
+        <div className='Carousel__FavoritesContainer2C'>
           {
             ListaVista
               .filter(list => list.correo === usuario.email)
               .map(list => (
-                <div key={list.id} className='Carousel__Favorites1'>
-                  <div key={list.Idpelicula} className='Carousel__Favorites'>
-                    <div className='imgbox'>
-                      <img className='img__carFav' src={list.urlima} alt="" />
+                <div key={list.id} className='Carousel__Favorites2C'>
+                  <div key={list.Idpelicula} className='Carousel__Favorites2'>
+                    <div className='imgbox1'>
+                      <img className='img__carFav1' src={list.urlima} alt="" />
                     </div>
 
                     <div className='details'>
                       <h1>{list.Nombre}</h1>
                       <section className='btnmovie'>
-                        <button className='movie__vista' onClick={() => Windowstatevista(true)} >Calificar</button>
+                        <button className='movie__vista' onClick={() => Windowstatecalificacion(true)} >Calificar</button>
                       </section>
-                      {/* aqui va el modal3 */}
                       <button className='btn__deleteMovie' onClick={() => deleteUserVistas(list.id)}>
                         Eliminar película
                       </button>
-
                     </div>
-
                   </div>
 
-
-
+                  <Modal3
+                    estadocalificacion={Window1calificacion}
+                    cambiarEstadocalificacion={Windowstatecalificacion}
+                    capturardatosCalificaciones={capturardatosCalificaciones}
+                    datosPeliculacali={list} 
+                  >
+                    <Opciones>
+                      <OpcionesCali>
+                        <form onSubmit={(e) => guardarDatosCalificaciones(e, list)}>
+                          {/* Aquí van los campos para la calificación */}
+                          {/* Asegúrate de tener los campos necesarios en userCalificacion */}
+                          <h1 name='Nombre__calificacion' className='nombre__calificacion'>{list.Nombre}</h1>
+                          <p name='Idpelicula__calificacion' className='id__pelicula__cali'>{list.Idpelicula}</p>
+                          <p name='correo__calificacion' className='correo__cali'>{list.correo}</p>
+                          <h3>Califica la película</h3>
+                          <select name='calificacion' className='select__calificacion' value={userCalificacion.calificacion} onChange={(e) => setUserCalificacion({ ...userCalificacion, calificacion: e.target.value })}>
+                            <option>Mala</option>
+                            <option>Regular</option>
+                            <option>Buena</option>
+                            <option>Muy buena</option>
+                            <option>Excelente</option>
+                          </select>
+                          <input name='comentario_personal'
+                            className='comentario_personal'
+                            placeholder="Añade un comentario sobre la película"
+                            value={userCalificacion.comentario} // Valor del estado
+                            onChange={(e) => setUserCalificacion({ ...userCalificacion, comentario: e.target.value })} />
+                          <h2>¿Enviar calificación?</h2>
+                          <button type="submit">Enviar</button>
+                        </form>
+                      </OpcionesCali>
+                      <Opciones3Cali>
+                        <div key={list.id}>
+                          <img src={`${list.urlima}`} alt="" width={120} height={180} />
+                        </div>
+                      </Opciones3Cali>
+                    </Opciones>
+                  </Modal3>
                   <hr />
                 </div>
               ))
@@ -469,8 +603,78 @@ const Principal = ({ usuario }) => {
 
       {/* valoracion de peliculas  */}
 
-      <div>
+      <div className='div__calificaciones'>
         <h1>SECCION DE VALORACION DE PELICULAS </h1>
+        <div className='calificaciones'>
+          <button className='card' onClick={() => setMostrarMuyMalas(!mostrarMuyMalas)}>
+            <span className='card__body'>Muy malas</span>
+          </button>
+          <button className='card' onClick={() => setMostrarRegular(!mostrarRegular)}>
+            <span className='card__body'>Regular</span>
+          </button>
+          <button className='card' onClick={() => setMostrarBuenas(!mostrarBuenas)}>
+            <span className='card__body' >Buena</span>
+          </button>
+          <button className='card' onClick={() => setMostrarMuyBuenas(!mostrarMuyBuenas)}>
+            <span className='card__body'>Muy buena</span>
+          </button>
+          <button className='card' onClick={() => setMostrarExcelente(!mostrarExcelente)}>
+            <span className='card__body'>Excelente</span>
+          </button>
+        </div>
+      </div>
+      <div>
+        {mostrarMuyMalas && (
+          <div className='container_tables'>
+            {
+            ListaCali
+            .filter(list => list.calificacion === 'Mala')
+            .map(list =>(
+              <table className='tabla'>
+               <caption>Pelicula</caption>
+               <thead>
+                 <tr>
+                   <th>Nombre</th>
+                   <th>Calificación</th>
+                   <th>Comentario</th>
+                 </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td data-label="nombre">{list.Nombre__calificacion}</td>
+                       <td data-label="calificacion">{list.calificacion}</td>
+                       <td data-label="comentario">{list.comentario}</td>
+                  
+                   </tr>
+               </tbody>
+            </table>
+              
+            ))
+
+           }
+            
+          </div>
+        )}
+        {mostrarRegular && (
+          <article className='Regular'>
+            <h1>CONTENEDOR regular</h1>
+          </article>
+        )}
+        {mostrarBuenas && (
+          <article className='Buena'>
+            <h1>contenedor Buena</h1>
+          </article>
+        )}
+        {mostrarMuyBuenas && (
+          <article className='Muy__Buena'>
+            <h1>CONTENEDOR DE MUY buena</h1>
+          </article>
+        )}
+        {mostrarExcelente && (
+          <article className='Excelente'>
+            <h1>CONTENEDOR Excelente</h1>
+          </article>
+        )}
       </div>
 
 
@@ -605,4 +809,46 @@ align-items:center;
 
 const Opciones3fav = styled.div`
 
+`;
+const OpcionesCali = styled.div`
+h3{
+  color:black;
+  font-size:18px;
+  padding-left:2%;
+}
+select{
+  
+}
+.comentario_personal{
+  margin-top:5px;
+}
+button{
+  margin-top:20px;
+  width:90px;
+  heigth: 60px;
+  background-color: rgb(35, 199, 35);
+  border:none;
+  font-style: bold;
+  color:#fff;
+  padding-bottom:6px;
+}
+button:hover{
+  background-color: darkgreen;
+  transition: 0.5s;
+}
+.nombre__calificacion{
+  font-size:35px;
+  color:black;
+}
+.id__pelicula__cali{
+  display:none;
+}
+.correo__cali{
+  display:none;
+}
+
+`;
+const Opciones3Cali = styled.div`
+margin-left: 7%;
+margin-top:4%;
 `;

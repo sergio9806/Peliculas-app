@@ -120,5 +120,59 @@
     const { name, value } = e.target;
     setUserVista({ ...user, [name]: value })
   }
+ animacion principal
+ <div>
+        <img src={Portada} alt="" className='tamaño__imagen' height={800} />
+        <div className="bodyp">
+          <div className="square"><img src={Uno} alt="" className='tamaño__imagen' /></div>
+           <div className="square"><img src={Uno} alt="" className='tamaño__imagen' /></div>
+          <div className="square"><img src={Uno} alt="" className='tamaño__imagen' /></div>
+          <div className="square"><img src={Uno} alt="" className='tamaño__imagen' /></div>
+          
 
+          <div className="circle"><img src={Tres} alt="" className='tamaño__imagen' /></div>
+           <div className="circle"><img src={Tres} alt="" className='tamaño__imagen' /></div>
+          <div className="circle"><img src={Tres} alt="" className='tamaño__imagen' /></div>
+          <div className="circle"><img src={Tres} alt="" className='tamaño__imagen' /></div>
+           
+
+          <div className="triangle"><img src={Dos} alt="" className='tamaño__imagen' /></div>
+           <div className="triangle"><img src={Dos} alt="" className='tamaño__imagen' /></div>
+          <div className="triangle"><img src={Dos} alt="" className='tamaño__imagen' /></div>
+          <div className="triangle"><img src={Dos} alt="" className='tamaño__imagen' /></div>
+           
+        </div>
+      </div>
+
+      //animacion 
+
+  useEffect(() => {
+    function randomValues() {
+      anime({
+        targets: ".square, .circle, .triangle",
+        translateX: function () {
+          return anime.random(-500, 500);
+        },
+        translateY: function () {
+          return anime.random(-300, 300);
+        },
+        rotate: function () {
+          return anime.random(0,40);
+        },
+        scale: function () {
+          return anime.random(0.2, 2);
+        },
+        duration: 5000,
+        easing: "easeInOutQuad",
+        complete: randomValues
+      });
+    }
+
+    randomValues();
+
+
+    return () => {
+      anime.remove(".square, .circle, .triangle");
+    };
+  }, []);
   
