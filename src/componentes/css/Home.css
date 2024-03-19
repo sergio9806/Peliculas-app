@@ -1,11 +1,25 @@
+#progress{
+  position: fixed;
+  top: 0;
+  width: 0;
+  background: tomato;
+  height: 1rem;
+  animation: progress-grow auto linear;
+  animation-timeline: scroll( block);
+  
+}
+@keyframes progress-grow {
+  0%{width: 0%;}
+  100%{width: 100%;}
+}
 .container__home{
    padding-top: 2.5rem;
-  background-color:hsla(250, 6%, 20%, 1); 
+   background: hsla(220, 17%, 7%, 1);
 }
 .buscador__home{
  margin-left: 30%;
-
-  
+display: flex;
+  padding-bottom: 50px;
   
   }
   
@@ -14,7 +28,7 @@
       padding-left: 25%;
       border-top-left-radius: 30px;
       border-bottom-left-radius:30px ;
-      border-color: #f4cc70;
+      border-color: tomato;
       font-size: 25px;
       border: 2px;
       color: black;
@@ -22,16 +36,17 @@
   .buscador__botonh{
       background: hsla(250, 6%, 20%, 1);
      font-size: 25px;
-     border-color: #f4cc70;
-      color: #f4cc70;
+     
+     color: #fffdf8;
       padding-right: 4%;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
+ 
   
   }
   .buscador__botonh:hover{
       
-     box-shadow: 0 0 20px #f4cc70;
+     box-shadow: 0 0 20px tomato;
      
   }
 .text__white{
@@ -46,9 +61,10 @@
     margin: 10px auto;
     padding-left: 10%;
     padding-right: 10%;
+    padding-bottom: 30px;
    }
 .tag{
-      color:  #f4cc70;
+  color: #fffdf8;
        padding: 10px 20px;
        background-color:hsla(250, 6%, 20%, 1);
        border-radius: 50px;
@@ -132,6 +148,9 @@ background: rgba(0,0,0.9);
 .container__peliculas .container__principal .flecha__derecha{
   right: 0;
 }
+.img_tamaño{
+  height: 450;
+}
 
 /*contenedor carousel*/
 .container__peliculas .container__carousel{
@@ -195,6 +214,7 @@ background: rgba(0,0,0.9);
   flex-wrap:nowrap ;
 
 }
+
 .container__peliculas2 .container__carousel2 .carousel4 .Opciones__peliculas2{
   min-width: 20%;
   transition: 3s ease all;
@@ -208,11 +228,149 @@ background: rgba(0,0,0.9);
   width: 100%;
   vertical-align: top ;
 }
-/*Media queries*/
-@media(max-width: 778px)  {
-  .peliculas__recomendadas .container__carousel{
-      overflow: visible;
+/*carousel proximas a salir */
+.container__peliculas3{
+  padding-top: 100px;
+  margin-bottom: 70px;
+  width: 95%;
+  align-items: center;
+  padding-left: 2.5%;
+}
+
+.peliculas__seccion3{
+  display: flex;
+  justify-content: space-between;
+  flex: end;
+}
+.peliculas__seccion3 h3{
+  font-size: 30px;
+ color: #fff;
+}
+
+.container__peliculas3 .container__principalproximas{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.container__peliculas3 .container__principalproximas .flecha__izquierda_proximas,
+.container__peliculas3 .container__principalproximas .flecha__derecha_proximas{
+position: absolute;
+border: none;
+background: rgba(0,0,0,0.3);
+font-size: 40px;
+height: 50%;
+top: calc(50%-25%);
+line-height: 40px;
+width: 50px;
+color: #fff;
+cursor: pointer;
+z-index: 500;
+transition: .2s ease all;
+}
+.container__peliculas3 .container__principalproximas .flecha__izquierda_proximas:hover,
+.container__peliculas3 .container__principalproximas .flecha__derecha_proximas:hover{
+background: rgba(0,0,0.9);
+}
+.container__peliculas3 .container__principalproximas .flecha__izquierda_proximas{
+  left: 0;
+}
+.container__peliculas3 .container__principalproximas .flecha__derecha_proximas{
+  right: 0;
+}
+.img_tamaño{
+  height: 450;
+}
+/*contenedor carousel*/
+.container__peliculas3 .container__proximas{
+  width: 100%;
+  padding: 20px 0 ;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+.container__peliculas3 .container__proximas .carousel5{
+  display: flex;
+  flex-wrap:nowrap ;
+
+}
+.container__peliculas3 .container__proximas .carousel5 .Opciones__proximas{
+  min-width: 20%;
+  transition: 3s ease all;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+}
+.container__peliculas3 .container__proximas .carousel5 .Opciones__proximas.hover {
+  transform: scale(1.2);
+  transform-origin: center;
+}
+.container__peliculas3 .container__proximas .carousel5 .Opciones__proximas img{
+  width: 100%;
+  vertical-align: top ;
+}
+/*responsivo*/
+@media(max-width: 1024px) {
+
+  .buscador__home{
+    margin-left: 20%;
+    border-right: 30px;
   }
+  
+    
+}
+@media(max-width: 800px)  {
+  .tags{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr  1fr  1fr ;
+    column-gap: 20px;
+    row-gap: 20px;
+    padding: 80px;
+    padding-top: 10px;
+    
+  }
+  .tag{
+    color:  #f4cc70;
+     background-color:hsla(250, 6%, 20%, 1);
+     border-radius: 50px;
+     margin: 5px;
+     display: inline-block;
+     cursor: pointer;
+     border: none;
+     font-weight: bold;
+     border: 2px solid #0a4352;
+     width: 150px auto;
+
+     }
+     .tag:hover{
+      color: #f4cc70;
+      border: 2px solid  #f4cc70;
+     }
+     
+  .buscador__home{
+    margin-left: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+  
+  }
+  .buscador__barrah{
+  
+   width: 100%;
+   text-align: center;
+   padding-left: 0;
+  }
+  .buscador__botonh{
+   margin-top: 10px;
+   font-size: auto;
+   margin-bottom: 10px;
+   width: 20%;
+   text-align: center;
+   padding-right: 0;
+  }
+  .peliculas__recomendadas{
+      overflow: visible;
+
+  }
+  
   .peliculas__recomendadas .container__carousel .carousel{
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -224,3 +382,5 @@ background: rgba(0,0,0.9);
       display: none;
   }
 }
+
+

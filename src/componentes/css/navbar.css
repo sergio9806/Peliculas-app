@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-.Navbar__container{
+.Navbar__containerhome{
   
-    box-sizing: border-box;
-   font-family:'Poppins',sans-serif;
+    box-sizing: border-box;  
    justify-content: space-between;
-  
 }
 .navbar__nav{
     display: flex;
@@ -13,76 +10,87 @@
     align-items: center;
     min-height: 20vh;
     background-color: #191919;
-    padding-left: 2%;
+   padding-left: 2%;
    
 }
+.logo__navbar{
+  display: flex; 
+  padding-right: 15%;
+  
+}
 .titulo__Pagina{
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 2.5rem !important; 
+  margin-top: 20px;
  
-    font-size: 4rem;  
-    color: #f4cc70;
-    font-weight: bold;
-    border-radius: 8px;
-    text-decoration: none;
-    padding: 0 23px;
-    text-align: center;
-   margin-right: 28px;
+  animation: colort 6s  infinite alternate both; 
+}
+
+.tamaño__logoN{
+  width: 80px ;
+  height: 80px ;
+}
+@keyframes colort {
+  from{
+    color: rgb(233, 210, 78);
+  }
+  to{
+    color: tomato;
+  }
+}
+.opciones__banner{
+  display: flex;
 }
 .navbar__ul{
  display: flex;
  text-decoration: none;
  position: relative;
  border-radius: 8px;
- background-color: #222;
- 
- 
+ justify-content:space-between;
+ padding-right: 15%;
+
 }
 .navbar__ul span{
   position:absolute;
   top: 0%;
-  left: 43%;
+  left: 40%;
   width: 55px;
   height: 100%;
-  background: linear-gradient(150deg,  rgb(30, 105, 105), #3aeaf0);
+  background: linear-gradient(150deg,  tomato, gold);
   border-radius: 8px;
   transition: .5s ease;
   
 }
 .item__nav{
   list-style: none;
-  padding-top: 2.3%;
-}
-
-.prueba{
-    text-decoration: none;
-    
-}
-
-.Nvitem{
-   color: aliceblue;
-  font-size: 2rem;  
-  text-decoration: none;
-  padding: 30px 23px;
+  padding-top: 9%;
   
 }
-.Nvitem:hover{
-    border-color:#f4cc70;
-}
 
-  nav .item__nav:nth-child(2):hover~span {
-    left: 49%;
-    width: 189px;
+
+
+.Nvitem{
+  color: #c9c1ae;
+  font-size: 1.5rem;  
+  text-decoration: none;
+  padding-right: 2rem;
+}
+   .item__nav:nth-child(1):hover~span {
+    left:48%;
+    width: 98px;
     top: 80%;
     height: 8%;
   }
-  nav .item__nav:nth-child(3):hover~span {
-    left: 71%;
-    width: 149px;
+   .item__nav:nth-child(2):hover~span {
+    left: 62%;
+    width: 108px;
     top: 80%;
     height: 8%;
   }
-  nav .item__nav:nth-child(4):hover~span {
-    left: 89%;
-    width: 102px;
+   .item__nav:nth-child(3):hover~span {
+    left: 77%;
+    width: 70px;
     top: 80%;
     height: 8%;
   }
@@ -90,7 +98,7 @@
     border: 0;
     background-image: linear-gradient(
         150deg,
-        rgb(30, 105, 105), #3aeaf0
+        tomato, gold
         
     );
     border-radius: 8px;
@@ -102,34 +110,149 @@
     transition: .3s;
     font-weight: bold;
     color: #f4cc70;
-    margin-left: 25%;
+    margin-left: 20%;
   }
   .boton__SignOut span{
     background-color: #111;
     padding: 16px 24px;
     border-radius: 6px;
     transition: .3s;
+    color: #fffdf8;
   }
 
   .boton__SignOut:hover span{
    background: none;
-   color: #fff;
   }
   .boton__SignOut:active{
    transform: scale(0.9);
   }
-  @media(max-width: 848px) {
-    .navbar__nav {
-      flex-direction: column;
+  /*responsive*/
+  @media(max-width: 1408px) {
+    .titulo__Pagina{
+ 
+      font-size: 3rem;  
+      color: #f4cc70;
+     margin-right: 24px;
+  }
+  .Nvitem{
+    color: aliceblue;
+   font-size: 1.3rem;  
+   text-decoration: none;
+   padding: 25px 30px;
+   margin-left: 20px;
+  }
+  .navbar__nav{
+    padding-left: 3%;
+}
+.navbar__ul span{
+  left: 37%;
+  
+}
+.navbar__ul{
+  display: flex;
+  text-decoration: none;
+  position: relative;
+  border-radius: 8px;
+  background-color: #222;
+ }
+ .item__nav{
+  margin-right: 20px;
+ }
+ .boton__SignOut{
+ margin-left: 40px;
+}
+nav .item__nav:nth-child(2):hover~span {
+  left: 46%;
+  width: 115px;
+  top: 80%;
+  height: 8%;
+}
+nav .item__nav:nth-child(3):hover~span {
+  left: 68%;
+  width: 110px;
+  top: 80%;
+  height: 8%;
+}
+nav .item__nav:nth-child(4):hover~span {
+  left: 89%;
+  width: 60px;
+  top: 80%;
+  height: 8%;
+}
+}
+@media(max-width: 1235px) {
+  .titulo__Pagina{
+    font-size: 2.5rem;   
+   margin-right: 18px;   
+}
+.Nvitem{
+ font-size: 1.1rem;  
+ padding: 25px 25px;
+ margin-left: 5px;
+}
+.navbar__nav{
+  padding-left: 3%;
+}
+.navbar__ul span{
+left: 39%;
+
+}
+
+.item__nav{
+margin-right: 20px;
+}
+.boton__SignOut{
+margin-left: 20px;
+}
+nav .item__nav:nth-child(2):hover~span {
+display: none;
+}
+nav .item__nav:nth-child(3):hover~span {
+  display: none;
+}
+nav .item__nav:nth-child(4):hover~span {
+  display: none;
+}
+}
+@media(max-width: 1040px) {
+  .navbar__nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 2% 0;
+   
+}
+.logo__navbar{
+  justify-content: center;
+}
+.navbar__nav{
+  padding-right: 2%;
+}
+
+.navbar__ul span{
+  display: none;
+  
+  }
+  
+}
+
+
+  @media(max-width: 900px) {
+    .Navbar__containerhome{
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+        
+    }
+    .navbar__nav {    
       align-items: center;
-      padding: 2% 0;
+      padding-right: 0;
+      
   }
   
   .titulo__Pagina {
       font-size: 3rem;
   }
   .navbar__ul{
-    display: flex;
     align-items: center;
     flex-direction: column;
     text-decoration: none;
@@ -137,11 +260,12 @@
     border-radius: 8px;
     background-color: #222;
     padding: 0 0 30px ;
+    width: 100%;
    }
    .navbar__ul span{
     position: absolute;
-    left: 5%;
-    width: 83%;
+    left: 28%;
+    width: 40%;
     top: 27%;
     height: 4%;
     background: linear-gradient(60deg, #2e3192, #f4cc70);
@@ -149,33 +273,27 @@
     transition: .5s ease;
   }
   nav .item__nav:nth-child(2):hover~span {
-    left: 32%;
-    width: 35%;
+    left: 42%;
+    width: 14%;
     top: 50%;
     height: 4%;
   }
   nav .item__nav:nth-child(3):hover~span {
-    left: 36%;
-    width: 28%;
+    left: 42%;
+    width: 13%;
     top: 68%;
     height: 4%;
   }
   nav .item__nav:nth-child(4):hover~span {
-    left: 40%;
-    width: 20%;
-    top: 85%;
+    left: 45%;
+    width: 8%;
+    top: 86%;
     height: 4%;
   }
   
-  .Nvitem, .Nvitem__boton {
-     
-      font-size: 1.5rem;
-      padding: 20px;
-      flex-direction: column;
+  .boton__SignOut{
+    justify-content: center;
+    
   }
-  .Nvitem__boton{
-    margin-right: 20%;
-  }
-
 
   }

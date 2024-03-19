@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import "./css/Home.css";
 import { useNavigate } from "react-router-dom";
-import { fetchTopRatedMovies, fetchCategories, fetchMoviesByCategory, fetchMoviesBySearchKey, fetchMovieDetails } from './Servicios';
+
 //variables de entorno 
 const API_URL = process.env.REACT_APP_API_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -34,11 +34,14 @@ const Home = () => {
   // const [Populares, setPopulares] = useState([]);
   // const flechaIzquierdaPopulares = document.getElementById('flecha__izquierda_top_rated');
   // const flechaDerechaPopulares  = document.getElementById('flecha__derecha_top_rated');
-
+  const filasProximos = document.querySelector('.container__proximas');
+  const [ProximoLanza, setProximoLanza] = useState([]);
+  const flechaIzquierdaProximo = document.getElementById('flecha__izquierda_proximas');
+  const flechaDerechaProximo = document.getElementById('flecha__derecha_proximas');
   // Llama a la función para cargar las películas mejor rankeadas en el useEffect
   useEffect(() => {
     fetchTopRatedMovies();
-
+    fetchProximosLanzamientos();
     // fetchMoviesByCategory('now_playing', 'Now Playing');
     // fetchMoviesByCategory('upcoming', 'Upcoming');
     // fetchMoviesByCategory('popular', 'Popular');
@@ -50,6 +53,16 @@ const Home = () => {
       setTopRatedMovies(data.results);
     } catch (error) {
       console.error('Error fetching top rated movies:', error);
+    }
+  };
+  
+
+  const fetchProximosLanzamientos = async () => {
+    try {
+      const { data } = await axios.get(`${API_URL}/movie/upcoming?api_key=${API_KEY}`);
+      setProximoLanza(data.results);
+    } catch (error) {
+      console.error('Error fetching proximo lanzamiento:', error);
     }
   };
   //eindicadores peliculas recomendadas 
@@ -77,6 +90,20 @@ const Home = () => {
     if (flechaIzquierdaTopRated !== null) {
       flechaIzquierdaTopRated.addEventListener('click', () => {
         filasTopRated.scrollLeft -= filasTopRated.offsetWidth;
+      });
+    }
+  }
+  //indicadores peliculas proximos lanzamintos 
+  const fechtIndicadoresproxi = () => {
+    if (flechaDerechaProximo !== null) {
+      flechaDerechaProximo.addEventListener('click', () => {
+        filasProximos.scrollLeft += filasProximos.offsetWidth;
+      });
+    }
+
+    if (flechaIzquierdaProximo !== null) {
+      flechaIzquierdaProximo.addEventListener('click', () => {
+        filasProximos.scrollLeft -= filasProximos.offsetWidth;
       });
     }
   }
@@ -187,6 +214,7 @@ const Home = () => {
 
   return (
     <main className="container__home">
+      <div id='progress'></div>
       {/*<h2 className='text-center mt-5 mb-5'> Trailers movies</h2>*/}
       {/* buscador */}
       <form className="buscador__home" onSubmit={searchMovies}>
@@ -245,7 +273,6 @@ const Home = () => {
         <div className="peliculas__seccion">
           <h3 className="peliculas__recomendadas">Peliculas recomendadas</h3>
           <div className="indicadores_peliculas">
-
           </div>
         </div>
         <div className="container__principal">
@@ -254,7 +281,7 @@ const Home = () => {
             <div className="carousel" ref={fechtIndicadoresPR}>
               {movies?.map((movie) => (
                 <div key={movie.id} className="Opciones__peliculas" onClick={() => selectMovie(movie)}>
-                  <img src={`${URL_IMAGE + movie.poster_path}`} alt="" height={450} />
+                  <img className='img_tamaño' src={`${URL_IMAGE + movie.poster_path}`} alt=""  />
                 </div>
               ))}
             </div>
@@ -277,7 +304,7 @@ const Home = () => {
             <div className="carousel4" ref={fechtIndicadores}>
               {topRatedMovies.map(movie => (
                 <div key={movie.id} className="Opciones__peliculas2" onClick={() => selectMovie(movie)}>
-                  <img src={`${URL_IMAGE + movie.poster_path}`} alt="" height={450} />
+                  <img className='img_tamaño' src={`${URL_IMAGE + movie.poster_path}`} alt=""  />
                 </div>
               ))}
             </div>
@@ -285,9 +312,28 @@ const Home = () => {
           <button role='button' id='flecha__derecha_top_rated' className="flecha__derecha_top_rated">{'>'}</button>
         </div>
       </div>
+      {/* contenedor de poster de peliculas proximas a salir  */}
+      <div className='container__peliculas3'>
+        <div className="peliculas__seccion3">
+          <h3 className="peliculas__proximas">Próximos lanzamientos</h3>
+          <div className="indicadores_proximas">
 
-
-
+          </div>
+        </div>
+        <div className="container__principalproximas">
+          <button role='button' id='flecha__izquierda_proximas' className="flecha__izquierda_proximas"> {'<'}</button>
+          <div className="container__proximas">
+            <div className="carousel5" ref={fechtIndicadoresproxi}>
+              {ProximoLanza.map(movie => (
+                <div key={movie.id} className="Opciones__proximas" onClick={() => selectMovie(movie)}>
+                  <img className='img_tamaño' src={`${URL_IMAGE + movie.poster_path}`} alt=""  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <button role='button' id='flecha__derecha_proximas' className="flecha__derecha_proximas">{'>'}</button>
+        </div>
+        </div>
     </main>
 
   )

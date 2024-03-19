@@ -1,4 +1,5 @@
 import React from "react";
+import logo_n from "../image/palomitasneon.png";
 import {Link, useNavigate} from "react-router-dom";
 import firebaseapp from "../credenciales";
 import {getAuth,signOut} from "firebase/auth";
@@ -18,18 +19,21 @@ export const NavBar = ({correoUsuario}) => {
     navigate("/Inicio");
   }
   return (
-    <div className="Navbar__container">
+    <div className="Navbar__containerhome">
+       
     <nav className="navbar__nav">
-  
+    
     {/* <a className="navbar-brand" >MovieWorld</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button> */}
        
       <ul className="navbar__ul">
-      <a className="titulo__Pagina">MovieWorld</a>
+      
+     <div className="logo__navbar"><img src={logo_n} alt="" className='tamaño__logoN' /><p className="titulo__Pagina">MovieWorld</p></div>
+     <div className="opciones__banner">
       <li className="item__nav">
-          <Link className="Nvitem" to='/Principal'>Mi espacio</Link>
+          <Link className="Nvitem" to='/Principal'>Principal</Link>
         </li>
 
         <li className="item__nav">
@@ -40,7 +44,7 @@ export const NavBar = ({correoUsuario}) => {
         </li>
         
         <span></span>
-
+        </div>
         {/* <li className="nav-item">
           <Link className="nav-link" to='/Detalle'></Link>
         </li> */}

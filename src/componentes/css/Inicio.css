@@ -256,7 +256,7 @@ background: rgba(0,0,0.9);
       }
      
       .nombre__genero{
-        color: #de7a22;
+        color: tomato;
         padding: 10px 20px;
         background-color:hsla(250, 6%, 20%, 1);
         border-radius: 50px;

@@ -6,6 +6,8 @@
     box-sizing: border-box;
    font-family:'Poppins',sans-serif;
    justify-content: space-between;
+   
+   
 }
 .navbar2__nav{
     display: flex;
@@ -41,7 +43,7 @@
   left: 55%;
   width: 55px;
   height: 100%;
-  background: linear-gradient(60deg, #2e3192, #f4cc70);
+  background: linear-gradient(60deg, tomato, gold);
   border-radius: 8px;
   transition: .5s ease;
   
@@ -97,10 +99,12 @@ nav .item__nav2:nth-child(3):hover~span {
   }
 
   @media(max-width: 764px) {
-    .navbar2__nav {
+    .Navbar2__container{
       flex-direction: column;
+     
+    }
+    .navbar2__nav {
       align-items: center;
-      padding: 2% 0;
   }
   
   .titulo__Pagina2 {
@@ -114,7 +118,8 @@ nav .item__nav2:nth-child(3):hover~span {
     position: relative;
     border-radius: 8px;
     background-color: #222;
-    padding: 0 0 30px ;
+    width: 100%;
+   
     
    }
    .navbar2__ul span{
@@ -123,7 +128,7 @@ nav .item__nav2:nth-child(3):hover~span {
     width: 85%;
     top: 33%;
     height: 4%;
-    background: linear-gradient(60deg, #2e3192, #f4cc70);
+    background: linear-gradient(60deg, tomato, gold);
     border-radius: 8px;
     transition: .5s ease;
     
@@ -144,8 +149,6 @@ nav .item__nav2:nth-child(3):hover~span {
   
   .Nvitem2 {
       font-size: 1.5rem;
-      padding: 20px;
-      flex-direction: column;
   }
   
 
