@@ -324,7 +324,6 @@ const Principal = ({ usuario }) => {
   };
   //funcion para eliminar películas de la tabla vistas
   const deleteUserVistas = async (id) => {
-    debugger;
     await deleteDoc(doc(db, "vistas", id));
     // Después de eliminar la película, actualiza la lista de películas
     setListaPeliculas(listaPeliculas.filter((movie) => movie.id !== id));
