@@ -11,7 +11,7 @@ import logo from "../image/palomitasneon.png";
 // import accion from "../image/accion.png";
 // import tira from "../image/tira.png";
 import "./css/Principal.css"
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef,useCallback,useMemo  } from 'react';
 import axios from 'axios';
 import styled from "styled-components";
 import Modal from './Modal';
@@ -247,54 +247,69 @@ const Principal = ({ usuario }) => {
     e.preventDefault();
     fetchMovies(searchKey);
   };
-  //funcion para traer los datos 
-  useEffect(() => {
-    const getLista = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'usuarios'))
-        const docs = []
-        querySnapshot.forEach((doc) => {
-          docs.push({ ...doc.data(), id: doc.id })
-        })
-        setLista(docs)
-      } catch (error) {
-
-      }
+  //obtener lista usuarios
+  const getLista = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, 'usuarios'));
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      setLista(docs);
+    } catch (error) {
+      console.error(error);
     }
-    getLista()
-  }, [lista])
-  //funcion para traer los datos de la tabla vista 
-  useEffect(() => {
-    const getListavista = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'vistas'))
-        const docs = []
-        querySnapshot.forEach((doc) => {
-          docs.push({ ...doc.data(), id: doc.id })
-        })
-        setListaVista(docs)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getListavista()
-  }, [ListaVista])
-  //funcion para traer los datos de la tabla calificacion 
-  useEffect(() => {
-    const getListaCali = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'calificacion'))
-        const docs = []
-        querySnapshot.forEach((doc) => {
-          docs.push({ ...doc.data(), id: doc.id })
-        })
-        setListaCali(docs)
-      } catch (error) {
-
-      }
-    }
-    getListaCali()
-  }, [ListaCali])
+  };
+ // Función para obtener la lista de vistas
+const getListavista = useCallback(async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, 'vistas'));
+    const docs = [];
+    querySnapshot.forEach((doc) => {
+      docs.push({ ...doc.data(), id: doc.id });
+    });
+    setListaVista(docs);
+  } catch (error) {
+    console.error(error);
+  }
+}, [setListaVista, db]);
+// Función para obtener la lista de calificaciones
+const getListaCali = useCallback(async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, 'calificacion'));
+    const docs = [];
+    querySnapshot.forEach((doc) => {
+      docs.push({ ...doc.data(), id: doc.id });
+    });
+    setListaCali(docs);
+  } catch (error) {
+    console.error(error);
+  }
+}, [setListaCali, db]);
+//llamadas de las funciones
+useEffect(() => {
+  getLista();
+  getListavista();
+  getListaCali();
+}, [getLista, getListavista, getListaCali]);
+ // Utilizar useMemo para memoizar la función getLista
+ const memoizedGetLista = useMemo(() => getLista, [db]);
+ const memoizedGetListavista = useMemo(() => getListavista, [db]);
+ const memoizedGetListaCali = useMemo(() => getListaCali, [db]);
+  // Llamar a memoizedGetLista en useEffect para cargar la lista
+ useEffect(() => {
+   memoizedGetLista();
+ }, [memoizedGetLista]);
+ 
+ // Llamar a memoizedGetListavista en useEffect para cargar la lista de vistas
+ useEffect(() => {
+   memoizedGetListavista();
+ }, [memoizedGetListavista]);
+ 
+ // Llamar a memoizedGetListaCali en useEffect para cargar la lista de calificaciones
+ useEffect(() => {
+   memoizedGetListaCali();
+ }, [memoizedGetListaCali]);
   //funcion para eliminar películas de la tabla usuarios 
   const deleteUser = async (id) => {
     await deleteDoc(doc(db, 'usuarios', id))
@@ -604,7 +619,7 @@ const Principal = ({ usuario }) => {
       {/* valoracion de peliculas  */}
 
       <div className='div__calificaciones'>
-        <h1>SECCION DE VALORACION DE PELICULAS </h1>
+        <h1>Valoración de películas </h1>
         <div className='calificaciones'>
           <button className='card' onClick={() => setMostrarMuyMalas(!mostrarMuyMalas)}>
             <span className='card__body'>Muy malas</span>
@@ -624,37 +639,29 @@ const Principal = ({ usuario }) => {
         </div>
       </div>
       <div>
-        {mostrarMuyMalas && (
-          <div className='container_tables'>
-            {
-            ListaCali
-            .filter(list => list.calificacion === 'Mala')
-            .map(list =>(
-              <table className='tabla'>
-               <caption>Pelicula</caption>
-               <thead>
-                 <tr>
-                   <th>Nombre</th>
-                   <th>Calificación</th>
-                   <th>Comentario</th>
-                 </tr>
-               </thead>
-               <tbody>
-                   <tr>
-                       <td data-label="nombre">{list.Nombre__calificacion}</td>
-                       <td data-label="calificacion">{list.calificacion}</td>
-                       <td data-label="comentario">{list.comentario}</td>
-                  
-                   </tr>
-               </tbody>
-            </table>
-              
-            ))
-
-           }
-            
-          </div>
-        )}
+      {mostrarMuyMalas && (
+    <div className='container_tables'>
+      {ListaCali.filter(list => list.calificacion === 'Mala').map((list, index) => (
+        <table className='tabla' key={index}>
+          <caption>Película</caption>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Calificación</th>
+              <th>Comentario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Nombre">{list.nombre}</td>
+              <td data-label="Calificación">{list.calificacion}</td>
+              <td data-label="Comentario">{list.comentario}</td>
+            </tr>
+          </tbody>
+        </table>
+      ))}
+    </div>
+  )}
         {mostrarRegular && (
           <article className='Regular'>
             <h1>CONTENEDOR regular</h1>

@@ -667,9 +667,11 @@ padding-left: 2%;
 @media(max-width: 768px) {
   .buscador__Principal {
     top: 20%;
-    left: 10%;
+    justify-content: center;
+    padding-left: 20%;
     box-shadow: none;
     position: absolute;
+    width: 100%;
   }
   .buscador__barraP {
     font-size: 9px;
@@ -685,6 +687,7 @@ padding-left: 2%;
     display: block;
   }    
   .lado1{
+    height: 50vh ;
     width: 100%;
     position: relative;
   }
@@ -694,7 +697,7 @@ padding-left: 2%;
    flex-direction: column;
   }
   .card{
-  width: 65vw;
+  width: 60vw;
   height: 15vh;
   justify-content: center;
   margin-top: 5%;
@@ -704,9 +707,9 @@ padding-left: 2%;
 
   padding-top: 10%;
   padding-bottom: 10%;
-  padding-right: 2%;
+  padding-right: 10%;
   height: 15vh;
-  width: 55vw;
+  width: 45vw;
 }
 /*inforacion  de la pelicula*/
   .lado2{
@@ -742,17 +745,12 @@ padding-left: 2%;
   }
   /*banner movimiento logo y titulo*/
   .titulo__movimiento{
-    top: 24%;
-    left: 45%;
-    font-size: 20px;
+   display: none;
   }
   .logo__cine{
-    top: 15%;
-    left: 60%;
+    display: none;
   }
-  .tamaño__logo{
-    width: 60px;
-  }
+  
   
   
 }
