@@ -5,7 +5,7 @@ import './css/perfil.css';
 
 const Perfil = () => {
   const datosEmpresa = {
-    nombre: "MovieWoeld",
+    nombre: "MovieWorld",
     industria: "Cine",
     telefono: "123-456-7890",
     descripcion: "Pagina para ver trailers de las mejores y mas actuales peliculas",
