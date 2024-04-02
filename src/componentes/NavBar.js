@@ -29,9 +29,10 @@ export const NavBar = ({correoUsuario}) => {
     </button> */}
        
       <ul className="navbar__ul">
-      
+      <span></span>
      <div className="logo__navbar"><img src={logo_n} alt="" className='tamaño__logoN' /><p className="titulo__Pagina">MovieWorld</p></div>
      <div className="opciones__banner">
+    
       <li className="item__nav">
           <Link className="Nvitem" to='/Principal'>Principal</Link>
         </li>
@@ -43,7 +44,7 @@ export const NavBar = ({correoUsuario}) => {
           <Link className="Nvitem" to='/Perfil'>Perfil</Link>
         </li>
         
-        <span></span>
+        
         </div>
         {/* <li className="nav-item">
           <Link className="nav-link" to='/Detalle'></Link>

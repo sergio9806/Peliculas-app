@@ -28,7 +28,7 @@
     left: -50%;
     width: 380px;
     height: 420px;
-    background: linear-gradient(0deg,transparent,#f4cc70    ) ;
+    background: linear-gradient(0deg,transparent,tomato    ) ;
     transform-origin: bottom right;
     animation: animate 6s linear infinite;
     animation-delay: -3s;
@@ -40,7 +40,7 @@
     left: -50%;
     width: 380px;
     height: 420px;
-    background: linear-gradient(0deg,transparent,#f4cc70    ) ;
+    background: linear-gradient(0deg,transparent, #f4cc70   ) ;
     transform-origin: bottom right;
     animation: animate 6s linear infinite;
     
@@ -55,7 +55,7 @@
 
 }
 .titulo__1{
-    color: #f4cc70;
+    color:#f4cc70;
 }
 .form__label{
     color: #f4cc70;
