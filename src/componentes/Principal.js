@@ -7,7 +7,6 @@ import styled from "styled-components";
 import Modal from './Modal';
 import Modal2 from './modal2';
 import Modal3 from './Modal3';
-import Modal4 from './modal4';
 import firebaseapp from "../credenciales";
 import { getFirestore, collection, addDoc, getDoc, doc, getDocs, setDoc, deleteDoc } from "firebase/firestore";
 
