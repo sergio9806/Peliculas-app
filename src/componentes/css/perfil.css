@@ -1,28 +1,84 @@
 .bodyPerfil {
+  position: relative; 
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   height: 100vh;
   overflow: hidden;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   font-family: "Anton", sans-serif;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  
- 
 }
 
 .night {
-  position:relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  width: 30%;
+  height: 65%;
   transform: rotateZ(45deg);
-  
+
+}
+
+.perfil__container {
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  color: #fff;
+  position: relative;
+}
+
+.perfil__cuadro {
+  background: rgba(27, 39, 53, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+
+.perfil__buzon {
+  background: rgba(27, 39, 53, 0.7);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.perfil__containerBuzon {
+  background: transparent;
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: #fff;
+  position: relative;
+}
+
+.tittlePerfil {
+  width: 100%;
+  text-align: center;
+}
+.tittlePerfil h1 {
+  font-size: 9rem;
+  color: #f4cc70;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.perfil__buzon label{
+  padding-top: 2%;
+  padding-left: 1%;
+}
+.perfil__buzon input{
+  padding-left: 1%;
+}
+.perfil__buzon textarea{
+  padding-left: 1%;
 }
 
 .shooting_star {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: 2px;
+  position: absolute; /* Cambiar a posición absoluta */
+  /* top: 30%; */ /* Eliminar las coordenadas de posición */
+  /* left: 50%; */ /* Eliminar las coordenadas de posición */
+  height: 1px;
   background: linear-gradient(-45deg, #5f91ff, rgba(0, 0, 255, 0));
   border-radius: 999px;
   filter: drop-shadow(0 0 6px #699bff);
@@ -32,12 +88,12 @@
 
 .shooting_star::before {
   content: "";
-  position: absolute;
-  top: calc(50% - 1px);
+  position: relative;
+  top: calc(40% - 1px);
   right: 0;
   height: 2px;
   background: linear-gradient(-45deg, rgba(0, 0, 255, 0), #5f91ff, rgba(0, 0, 255, 0));
-  transform: translateX(50%) rotateZ(45deg);
+  transform: translateX(40%) rotateZ(40deg);
   border-radius: 100%;
   -webkit-animation: shining 3000ms ease-in-out infinite;
   animation: shining 3000ms ease-in-out infinite;
@@ -45,8 +101,8 @@
 
 .shooting_star::after {
   content: "";
-  position: absolute;
-  top: calc(50% - 1px);
+  position: relative;
+  top: calc(40% - 1px);
   right: 0;
   height: 2px;
   background: linear-gradient(-45deg, rgba(0, 0, 255, 0), #5f91ff, rgba(0, 0, 255, 0));
@@ -54,7 +110,7 @@
   border-radius: 100%;
   -webkit-animation: shining 3000ms ease-in-out infinite;
   animation: shining 3000ms ease-in-out infinite;
-  transform: translateX(50%) rotateZ(-45deg);
+  transform: translateX(40%) rotateZ(-40deg);
 }
 
 .shooting_star:nth-child(1) {
@@ -412,75 +468,24 @@
     transform: rotate(405deg);
   }
 }
+@media(max-width: 768px) {
+  .shooting_star {
+    display: none;
+  }
+  
+  .tittlePerfil {
+    display: none; 
+  }
 
+  .bodyPerfil {
+    flex-direction: column; 
+    align-items: center; 
+  }
 
-.perfil__container {
-  background: transparent;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: auto;
-  right: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  color: #fff;
-}
-
-.perfil__cuadro {
-  background: rgba(27, 39, 53, 0.7);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: justify;
-  position: fixed;
-}
-
-.perfil__cuadro {
-  margin: 50px 0;
-  color: #fff;
-  font-family: "Anton", sans-serif;
-}
-
-.container__buzon {
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: fixed;
-}
-
-.perfil__buzon {
-  background: rgba(27, 39, 53, 0.7);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: justify;
-}
-
-.perfil__containerBuzon {
-  background: transparent;
-  width: 100%;
-  height: 100%;
-  position: fixed ;
-  padding-right: 100%;
-  top: auto;
-  left: 75%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  color: #fff;
-}
-
-.h1__tittlePerfil {
-  font-size: 11rem;
-  color: #f4cc70;
-  font-weight: bold;
-  border-radius: 8px;
-  text-decoration: underline;
-  text-align: center;
-  padding-inline-start: 25%;
-  margin-top: -35%;
+  .perfil__container,
+  .perfil__containerBuzon {
+    
+    width: 80%; 
+    text-align: center; 
+  }
 }

@@ -23,23 +23,27 @@ const Inicio = () => {
   const [trailer, setTrailer] = useState(null)
   const [currentBannerMovie, setCurrentBannerMovie] = useState(null);
   //variable para busqueda por generos 
+  const [menuOpen, setMenuOpen] = useState(false);
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
-  
+
   //variables para carousel
   const filas = document.querySelector('.container__carousel2');
   const flechaIzquierda2 = document.getElementById('flecha__izquierda2');
   const flechaDerecha2 = document.getElementById('flecha__derecha2');
-  
+  // Función para alternar entre abrir y cerrar el menú
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
   //
   useEffect(() => {
     fetchCategories();
     fetchMovies();
   }, []);
-  
+
   useEffect(() => {
     if (movies.length > 0) {
-      setCurrentBannerMovie(movies[0]); 
+      setCurrentBannerMovie(movies[0]);
     }
   }, [movies]);
 
@@ -140,11 +144,11 @@ const Inicio = () => {
 
   return (
     <div className="Container__inicio">
-      
+
       <div className="categorias" >
-      <h3 className="titulo">Categorias</h3>
+        <h3 className="titulo">Categorias</h3>
         <ul className="lista__generos" >
-        
+
           {categories.map((category) => (
             <li className="generos" key={category.id} >
               <button className="nombre__genero" onClick={() => handleCategoryClick(category.id)}>{category.name}</button>
@@ -152,15 +156,34 @@ const Inicio = () => {
           ))}
         </ul>
       </div>
-      
+
+
+
+      <div className="categorias__hamburguesa" >
+        <span className='activar__menu' onClick={toggleMenu}>
+          Categorías
+          ☰
+        </span>
+        {menuOpen && (
+        <ul className="lista__generos_Hamburguesa" >
+
+          {categories.map((category) => (
+            <li className="generos__hamburgesa" key={category.id} >
+              <button className="nombre__genero_hamburguesa" onClick={() => handleCategoryClick(category.id)}>{category.name}</button>
+            </li>
+          ))}
+        </ul>
+        )}
+      </div>
+
       <div className="seccion__2">
         {/* buscador */}
 
         <form className="buscador" onSubmit={searchMovies}>
-         
-          <input  className="buscador__barra" type='text' placeholder='search' onChange={(e) => setSearchKey(e.target.value)} />
+
+          <input className="buscador__barra" type='text' placeholder='search' onChange={(e) => setSearchKey(e.target.value)} />
           <button className="buscador__boton">Buscar</button>
-          
+
         </form>
         {/* contenedor del banner y reproductor de video  */}
         <div className="banner__sombra">
@@ -205,7 +228,7 @@ const Inicio = () => {
               <div className="carousel2">
                 {movies.map((movie) => (
                   <div key={movie.id} className="Opciones__peliculas2" onClick={() => selectMovie(movie)}>
-                    <img src={`${URL_IMAGE + movie.poster_path}`} alt="" height={400} />
+                    <img className='img_tamaño' src={`${URL_IMAGE + movie.poster_path}`} alt="" />
                   </div>
                 ))}
               </div>
@@ -214,7 +237,7 @@ const Inicio = () => {
           </div>
         </div>
       </div>
-      
+
     </div>
   )
 }

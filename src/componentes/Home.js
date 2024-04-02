@@ -11,6 +11,7 @@ const URL_IMAGE = process.env.REACT_APP_URL_IMAGE;
 
 const Home = () => {
   //variables de estado 
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
   const [allmovies, setAlMovies] = useState([]);
@@ -46,6 +47,9 @@ const Home = () => {
     // fetchMoviesByCategory('upcoming', 'Upcoming');
     // fetchMoviesByCategory('popular', 'Popular');
   }, []);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   const fetchTopRatedMovies = async () => {
     try {
@@ -213,10 +217,28 @@ const Home = () => {
   };
 
   return (
-    <main className="container__home">
+    <div className="container__home">
       <div id='progress'></div>
       {/*<h2 className='text-center mt-5 mb-5'> Trailers movies</h2>*/}
       {/* buscador */}
+      <div className="categorias__hamburguesa" >
+        <span className='activar__menu' onClick={toggleMenu}>
+          Categorías
+          ☰
+        </span>
+        {menuOpen && (
+        <ul className="lista__generos_Hamburguesa" >
+
+          {categories.map((category) => (
+            <li className="generos__hamburgesa" key={category.id} >
+              <button className="nombre__genero_hamburguesa" onClick={() => handleCategoryClick(category.id)}>{category.name}</button>
+            </li>
+          ))}
+        </ul>
+        )}
+      </div>
+
+      
       <form className="buscador__home" onSubmit={searchMovies}>
         <input className="buscador__barrah" type='text' placeholder='search' onChange={(e) => setSearchKey(e.target.value)} />
         <button className="buscador__botonh">Buscar</button>
@@ -235,39 +257,45 @@ const Home = () => {
         </ul>
       </div>
       {/* contenedor del banner y reproductor de video  */}
-      <div>
+      <div
+  ref={bannerImageRef}
+  className="viewtrailer"
+  style={{
+    position: 'relative', // Establece la posición relativa para el contenedor
+    backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
+  }}
+>
+  {/* Div para el degradado de sombra */}
+  <div
+    style={{
+      position: 'absolute', // Establece la posición absoluta para la superposición
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 70%)', // Crea el degradado de sombra
+    }}
+  />
 
-        {movie ? (
-          <div
-            ref={bannerImageRef}
-
-            className="viewtrailer"
-            style={{
-              backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
-            }} >
-
-            <div className="container">
-              <div className="">
-                {trailer ? (
-                  <button
-                    className="boton"
-                    onClick={() => navegar(movie.id)}
-                    type="button"
-                  >
-                    Ver más
-                  </button>
-                ) : (
-                  "disculpas,información no encontrada"
-                )}
-                <h1 className="text__white">{movie.title}</h1>
-                <p className="text__white">{movie.overview}</p>
-              </div>
-            </div>
-
-          </div>
-        ) : null}
-
-      </div>
+  
+  <div className="container"  style={{ position: 'relative', zIndex: '1' }}>
+    <div className="">
+      {trailer ? (
+        <button
+          className="boton"
+          onClick={() => navegar(movie.id)}
+          type="button"
+        >
+          Ver más
+        </button>
+      ) : (
+        "Disculpas, información no encontrada"
+      )}
+      <h1 className="text__white">{movie.title}</h1>
+      <p className="text__white">{movie.overview}</p>
+    </div>
+  </div>
+</div>
       {/* contenedor de poster de peliculas */}
       <div className='container__peliculas'>
         <div className="peliculas__seccion">
@@ -334,8 +362,7 @@ const Home = () => {
           <button role='button' id='flecha__derecha_proximas' className="flecha__derecha_proximas">{'>'}</button>
         </div>
         </div>
-    </main>
-
+    </div>
   )
 }
 
